@@ -5,7 +5,7 @@ import './Login.css';
 
 
 function Login() {
-    const [username, setUsername] = useState('');
+    const [user_name, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ function Login() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setError('');
-        if (username.length < 5 || username.length > 15) {
+        if (user_name.length < 5 || user_name.length > 15) {
             setError('Username must be between 5 and 15 characters.');
             return;
         }
@@ -22,14 +22,15 @@ function Login() {
             return;
         }
         try {
-            const response = await axios.post('http://localhost:8080/api/login', { username, password });
-            if (response.data.success) {
-                // Redirect or do something upon successful login
-                // localStorage.setItem('authToken', 'your-auth-token');
-                // history.push('/home'); 
-                //homePage
+            const response = await axios.post('http://localhost:8080/is-verified-user', { user_name, password });
+            if (response.valid_user) {
+                // setIsLoggedIn(true);
+                setError("An error krjgit rhthhtr ");
+
+                
+
             } else {
-                setError(response.data.message);
+                setError("An error ");
                 setUsername(''); // Clear the username field
                 setPassword(''); // Clear the password field
             }
@@ -50,7 +51,7 @@ function Login() {
                         type="text"
                         id="username"
                         name="username"
-                        value={username}
+                        value={user_name}
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />
