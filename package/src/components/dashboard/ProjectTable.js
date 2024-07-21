@@ -1,59 +1,92 @@
 import { Card, CardBody, CardTitle, CardSubtitle, Table } from "reactstrap";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
 import user1 from "../../assets/images/users/user1.jpg";
 import user2 from "../../assets/images/users/user2.jpg";
 import user3 from "../../assets/images/users/user3.jpg";
 import user4 from "../../assets/images/users/user4.jpg";
 import user5 from "../../assets/images/users/user5.jpg";
 
-const tableData = [
-  {
-    avatar: user1,
-    name: "Hanna Gover",
-    email: "hgover@gmail.com",
-    project: "Flexy React",
-    status: "pending",
-    weeks: "35",
-    budget: "95K",
-  },
-  {
-    avatar: user2,
-    name: "Hanna Gover",
-    email: "hgover@gmail.com",
-    project: "Lading pro React",
-    status: "done",
-    weeks: "35",
-    budget: "95K",
-  },
-  {
-    avatar: user3,
-    name: "Hanna Gover",
-    email: "hgover@gmail.com",
-    project: "Elite React",
-    status: "holt",
-    weeks: "35",
-    budget: "95K",
-  },
-  {
-    avatar: user4,
-    name: "Hanna Gover",
-    email: "hgover@gmail.com",
-    project: "Flexy React",
-    status: "pending",
-    weeks: "35",
-    budget: "95K",
-  },
-  {
-    avatar: user5,
-    name: "Hanna Gover",
-    email: "hgover@gmail.com",
-    project: "Ample React",
-    status: "done",
-    weeks: "35",
-    budget: "95K",
-  },
-];
+
 
 const ProjectTables = () => {
+  const [tableData, setTableData] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    // Define the request payload
+    const payload = { user_id: 2 };
+
+    const fetchTableData = async () => {
+      try {
+        // Replace 'YOUR_API_URL' with the actual URL of your API
+        const response = await axios.post('http://localhost:8080/homepage/get', payload, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        setTableData(response.data.matches); // Assuming matches array is in response.data.matches
+        setError('');
+      } catch (error) {
+        setError('There was an error fetching the data!');
+        console.error('There was an error fetching the data!', error);
+      }
+    };
+
+    fetchTableData();
+  }, []); // Empty dependency array ensures this runs once when component mounts
+
+
+// const tableData = [
+//   {
+//     avatar: user1,
+//     name: "Hanna Gover",
+//     email: "hgover@gmail.com",
+//     project: "Flexy React",
+//     status: "pending",
+//     weeks: "35",
+//     budget: "95K",
+//   },
+//   {
+//     avatar: user2,
+//     name: "Hanna Gover",
+//     email: "hgover@gmail.com",
+//     project: "Lading pro React",
+//     status: "done",
+//     weeks: "35",
+//     budget: "95K",
+//   },
+//   {
+//     avatar: user3,
+//     name: "Hanna Gover",
+//     email: "hgover@gmail.com",
+//     project: "Elite React",
+//     status: "holt",
+//     weeks: "35",
+//     budget: "95K",
+//   },
+//   {
+//     avatar: user4,
+//     name: "Hanna Gover",
+//     email: "hgover@gmail.com",
+//     project: "Flexy React",
+//     status: "pending",
+//     weeks: "35",
+//     budget: "95K",
+//   },
+//   {
+//     avatar: user5,
+//     name: "Hanna Gover",
+//     email: "hgover@gmail.com",
+//     project: "Ample React",
+//     status: "done",
+//     weeks: "35",
+//     budget: "95K",
+//   },
+// ];
+
+
   return (
     <div>
       <Card>
@@ -75,35 +108,35 @@ const ProjectTables = () => {
               </tr>
             </thead>
             <tbody>
-              {tableData.map((tdata, index) => (
+              {tableData.map((matches, index) => (
                 <tr key={index} className="border-top">
                   <td>
                     <div className="d-flex align-items-center p-2">
                       <img
-                        src={tdata.avatar}
+                        src={matches.matchId}
                         className="rounded-circle"
                         alt="avatar"
                         width="45"
                         height="45"
                       />
                       <div className="ms-3">
-                        <h6 className="mb-0">{tdata.name}</h6>
-                        <span className="text-muted">{tdata.email}</span>
+                        <h6 className="mb-0">{matches.teamOne}</h6>
+                        <span className="text-muted">{matches.teamTwo}</span>
                       </div>
                     </div>
                   </td>
-                  <td>{tdata.project}</td>
+                  <td>{matches.project}</td>
                   <td>
-                    {tdata.status === "pending" ? (
+                    {matches.status === "pending" ? (
                       <span className="p-2 bg-danger rounded-circle d-inline-block ms-3"></span>
-                    ) : tdata.status === "holt" ? (
+                    ) : matches.status === "holt" ? (
                       <span className="p-2 bg-warning rounded-circle d-inline-block ms-3"></span>
                     ) : (
                       <span className="p-2 bg-success rounded-circle d-inline-block ms-3"></span>
                     )}
                   </td>
-                  <td>{tdata.weeks}</td>
-                  <td>{tdata.budget}</td>
+                  <td>{matches.weeks}</td>
+                  <td>{matches.budget}</td>
                 </tr>
               ))}
             </tbody>

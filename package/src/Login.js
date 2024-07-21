@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import FullLayout from './layouts/FullLayout';
 
-
-function Login() {
-    const [user_name, setUsername] = useState('');
+function Login({setUser}) {
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -13,7 +13,8 @@ function Login() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setError('');
-        if (user_name.length < 5 || user_name.length > 15) {
+       
+        if (username.length < 5 || username.length > 15) {
             setError('Username must be between 5 and 15 characters.');
             return;
         }
@@ -21,23 +22,40 @@ function Login() {
             setError('Password must be between 8 and 20 characters.');
             return;
         }
+
+  
+      
+
         try {
-            const response = await axios.post('http://localhost:8080/is-verified-user', { user_name, password });
-            if (response.valid_user) {
-                // setIsLoggedIn(true);
-                setError("An error krjgit rhthhtr ");
+            const source = axios.CancelToken.source();
+            const timeout = setTimeout(() => {
+                source.cancel('Request timed out');
+            }, 50000); // 5 seconds in milliseconds
+            const response = await axios.post('http://localhost:8080/is-verified-user', { user_name : username, password : password }, 
+                {
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                cancelToken: source.token,});
 
+            if (response.data.valid_user) {
+                setUser({username});
+                navigate('/starter');
                 
-
-            } else {
-                setError("An error ");
-                setUsername(''); // Clear the username field
-                setPassword(''); // Clear the password field
             }
-        } catch (error) {
+            else {
+                setError("An error ");
+                // setUsername(''); // Clear the username field
+                // setPassword(''); // Clear the password field
+            }
+        } 
+        catch (error) {
             setError('An error occurred. Please try again.');
             setUsername(''); // Clear the username field
             setPassword(''); // Clear the password field
+            
+
+            
         }
     };
 
@@ -51,7 +69,7 @@ function Login() {
                         type="text"
                         id="username"
                         name="username"
-                        value={user_name}
+                        value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />

@@ -15,23 +15,35 @@
 
 // export default App;
 // App.js
-import React from 'react';
+// <AuthProvider>
+  //   <Routes>
+  //       {ThemeRoutes.map((route, index) => (
+  //         <Route key={index} path={route.path} element={route.element}>
+  //           {route.children && route.children.map((child, index) => (
+  //             <Route key={index} path={child.path} element={child.element} />
+  //           ))}
+  //         </Route>
+  //       ))}
+  //   </Routes>
+  // </AuthProvider>
+import React,{useState} from 'react';
+import {useRoutes} from 'react-router-dom'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ThemeRoutes from './route/ThemeRouter';
 import { AuthProvider } from './AuthContext';
+  
+  const App = () => {
+  const [user, setUser] = useState(null);
+  
+  // Define routing
+  const routing = useRoutes(ThemeRoutes(user, setUser));
 
-const App = () => (
-  <AuthProvider>
-    <Routes>
-        {ThemeRoutes.map((route, index) => (
-          <Route key={index} path={route.path} element={route.element}>
-            {route.children && route.children.map((child, index) => (
-              <Route key={index} path={child.path} element={child.element} />
-            ))}
-          </Route>
-        ))}
-    </Routes>
-  </AuthProvider>
-);
+  return (
+    <div className="dark">
+      {routing}
+    </div>
+  );
+  };
+
 
 export default App;
