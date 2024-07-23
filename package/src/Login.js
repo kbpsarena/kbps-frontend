@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
 import axios from 'axios';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
-import FullLayout from './layouts/FullLayout';
 
 function Login({setUser}) {
     const [username, setUsername] = useState('');
@@ -40,8 +39,13 @@ function Login({setUser}) {
 
             if (response.data.valid_user) {
                 setUser({username});
-                navigate('/starter');
-                
+                // I want to direct the user to home-page after login
+                navigate('/homepage');
+                // now how to write home-page component
+                setUsername(''); // Clear the username field
+                setPassword(''); // Clear the password field
+            
+
             }
             else {
                 setError("An error ");

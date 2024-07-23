@@ -31,6 +31,8 @@ import {useRoutes} from 'react-router-dom'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ThemeRoutes from './route/ThemeRouter';
 import { AuthProvider } from './AuthContext';
+
+
   
   const App = () => {
   const [user, setUser] = useState(null);

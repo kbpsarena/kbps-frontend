@@ -1,0 +1,28 @@
+.match-page {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .match-page h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .match-page p {
+    font-size: 18px;
+    margin: 5px 0;
+  }
+  
+  .match-page a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .match-page a:hover {
+    text-decoration: underline;
+  }
+  

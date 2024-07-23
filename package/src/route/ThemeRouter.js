@@ -49,7 +49,7 @@
 // export default ThemeRoutes;
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import FullLayout from '../layouts/FullLayout';
+// import FullLayout from '../layouts/FullLayout';
 import Login from '../Login';
 import Starter from '../views/Starter';
 import MainPage from '../components/dashboard/MainPage';
@@ -61,23 +61,30 @@ import Cards from '../views/ui/Cards';
 import Grid from '../views/ui/Grid';
 import Tables from '../views/ui/Tables';
 import Forms from '../views/ui/Forms';
+import MatchList from '../MatchList';
+import MatchPage from '../MatchPage';
 import Breadcrumbs from '../views/ui/Breadcrumbs';
 import ProtectedRoute from '../ProtectedRoute'; // Assuming you have a ProtectedRoute component
+
+//explain me the below code
 
 const ThemeRoutes = (user, setUser) => [
   {
     path: '/',
-    element: <FullLayout />,
+    // TODO: we can use this in future
+    // element: <FullLayout />,
     children: [
       { path: '/', element: user ? <Navigate to="/starter" /> : <Navigate to="/login" /> },
       { path: '/login', element: <Login setUser={setUser} /> },
-      {
-        path: '/starter',
-        element: user ?  <Starter />  : <Navigate to="/login" />,
-        children: [
-          { path: 'mainPage', element: <ProtectedRoute element={<MainPage />} /> },
-        ],
-      },
+      { path: '/homepage', element: user ? <MatchList /> : <Navigate to="/login" /> },
+      {path: '/matchpage/:matchId', element: user ? <MatchPage /> : <Navigate to="/login" />},
+      // {
+      //   path: '/starter',
+      //   element: user ?  <Starter />  : <Navigate to="/login" />,
+      //   children: [
+      //     { path: 'mainPage', element: <ProtectedRoute element={<MainPage />} /> },
+      //   ],
+      // },
       { path: '/about', element: user ? <ProtectedRoute element={<About />} /> : <Navigate to="/login" /> },
       { path: '/alerts', element: user ? <ProtectedRoute element={<Alerts />} /> : <Navigate to="/login" /> },
       { path: '/badges', element: user ? <ProtectedRoute element={<Badges />} /> : <Navigate to="/login" /> },
