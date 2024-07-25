@@ -60,9 +60,11 @@ const MatchList = () => {
                 <div className="match-details">
                   <span className="team-name">{match.team_one}</span>
                   <span className="score">{match.team_one_score || 'N/A'}</span>
+                  <span className="overs">{match.team_one_overs || 'N/A'}</span>
                   <span className="vs">vs</span>
                   <span className="team-name">{match.team_two}</span>
                   <span className="score">{match.team_two_score || 'N/A'}</span>
+                  <span className="overs">{match.team_two_overs || 'N/A'}</span>
                 </div>
               </Link>
             </li>

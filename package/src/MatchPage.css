@@ -1,4 +1,4 @@
-.match-page {
+ .match-page {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
@@ -6,7 +6,15 @@
     border-radius: 8px;
     background-color: #f9f9f9;
   }
-  
+  .matches-page {
+    max-width: 600px;
+    display: flex;
+    margin: 0px ;
+    padding: 2px 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
   .match-page h1 {
     font-size: 24px;
     margin-bottom: 10px;
@@ -25,4 +33,36 @@
   .match-page a:hover {
     text-decoration: underline;
   }
+   
+
+
   
+  /* styles.css */
+.horizontal-box {
+
+  padding : 5px 50px 5px 50px;
+  margin: 5px 5px 5px 5px;
+  border: 1px solid black;
+  white-space: nowrap; 
+ 
+}
+
+
+.spans{
+  padding : 5px 5px 5px 5px;
+  margin: 5px 5px 5px 5px;
+}
+.box-item {
+  margin: 10px 10px 10px px;
+  border: 2px solid black;
+  padding: 5px 15px 5px 5px;
+  
+}
+
+.ratio-2 {
+  flex-grow: 2;
+}
+
+.ratio-5 {
+  flex-grow: 5;
+}

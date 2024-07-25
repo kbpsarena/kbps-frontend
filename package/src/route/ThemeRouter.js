@@ -49,7 +49,7 @@
 // export default ThemeRoutes;
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-// import FullLayout from '../layouts/FullLayout';
+import FullLayout from '../layouts/FullLayout';
 import Login from '../Login';
 import Starter from '../views/Starter';
 import MainPage from '../components/dashboard/MainPage';
@@ -69,13 +69,13 @@ import ProtectedRoute from '../ProtectedRoute'; // Assuming you have a Protected
 //explain me the below code
 
 const ThemeRoutes = (user, setUser) => [
+  { path: '/login', element: <Login setUser={setUser} /> },
   {
     path: '/',
     // TODO: we can use this in future
-    // element: <FullLayout />,
+    element: <FullLayout />,
     children: [
       { path: '/', element: user ? <Navigate to="/starter" /> : <Navigate to="/login" /> },
-      { path: '/login', element: <Login setUser={setUser} /> },
       { path: '/homepage', element: user ? <MatchList /> : <Navigate to="/login" /> },
       {path: '/matchpage/:matchId', element: user ? <MatchPage /> : <Navigate to="/login" />},
       // {
