@@ -1,54 +1,49 @@
 .App-header {
-    text-align: center;
-    background-color: #282c34;
-    padding: 20px;
-    color: white;
-  }
-  
-  .match-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .match-item {
-    margin: 10px 0;
-  }
-  
-  .match-item a {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .match-item a:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .match-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .team-name {
-    font-weight: bold;
-  }
-  
-  .score {
-    font-size: 0.9em;
-    color: #555;
-  }
+  text-align: center;
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
 
-  .overs {
-    font-size: 1.9em;
-    color: #1e1919;
-  }
-  
-  .vs {
-    margin: 0 10px;
-    font-weight: bold;
-  }
+.match-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.match-item {
+  margin: 10px 0;
+}
+
+.match-item a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.match-item a:hover {
+  background-color: #f0f0f0;
+}
+
+.match-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.team-name {
+  font-weight: bold;
+}
+
+.score {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.vs {
+  margin: 0 10px;
+  font-weight: bold;
+}

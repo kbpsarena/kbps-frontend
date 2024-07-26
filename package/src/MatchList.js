@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './MatchList.css'; // Ensure you create and import the CSS file
+import './const-file';
+import { getUserId } from './Utils'; // Adjust the path as needed
+
+
 
 
 
@@ -9,6 +13,7 @@ const MatchList = () => {
   console.log("I am inside MatchList");
   const [matches, setMatches] = useState([]);
   const [userData, setUserData] = useState({});
+  const userId = getUserId(); 
 
   useEffect(() => {
     const fetchMatches = async () => {
@@ -17,7 +22,7 @@ const MatchList = () => {
             const timeout = setTimeout(() => {
                 source.cancel('Request timed out');
             }, 50000); // 5 seconds in milliseconds
-            const response = await axios.post('http://localhost:8080/homepage/get', { user_id : 1}, 
+            const response = await axios.post('http://localhost:8080/homepage/get', { user_id : userId}, 
                 {
                 headers: {
                   'Content-Type': 'application/json',

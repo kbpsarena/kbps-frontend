@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import './Login.css';
+import whatsappLogo from './whatsapp_logo.png';
 
-function Login({setUser}) {
+function Login({ setUser }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -12,7 +14,7 @@ function Login({setUser}) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setError('');
-       
+
         if (username.length < 5 || username.length > 15) {
             setError('Username must be between 5 and 15 characters.');
             return;
@@ -22,45 +24,45 @@ function Login({setUser}) {
             return;
         }
 
-  
-      
-
         try {
             const source = axios.CancelToken.source();
             const timeout = setTimeout(() => {
                 source.cancel('Request timed out');
-            }, 50000); // 5 seconds in milliseconds
-            const response = await axios.post('http://localhost:8080/is-verified-user', { user_name : username, password : password }, 
-                {
+            }, 5000); // 5 seconds in milliseconds
+            const response = await axios.post(`http://localhost:8080/is-verified-user`, { user_name: username, password: password }, {
                 headers: {
-                  'Content-Type': 'application/json',
+                    'Content-Type': 'application/json',
                 },
-                cancelToken: source.token,});
+                cancelToken: source.token,
+            });
 
             if (response.data.valid_user) {
-                setUser({username});
-                // I want to direct the user to home-page after login
-                navigate('/homepage');
-                // now how to write home-page component
+                setUser({ username });
+                Cookies.set('user_id', response.data.user_id); // Set user_id in cookies
+                console.log('User ID:', response.data.user_id);
+                navigate('/homepage'); // Navigate to home page after successful login
                 setUsername(''); // Clear the username field
                 setPassword(''); // Clear the password field
-            
-
+            } else {
+                setError("An error occurred.");
             }
-            else {
-                setError("An error ");
-                // setUsername(''); // Clear the username field
-                // setPassword(''); // Clear the password field
-            }
-        } 
-        catch (error) {
+        } catch (error) {
             setError('An error occurred. Please try again.');
             setUsername(''); // Clear the username field
             setPassword(''); // Clear the password field
-            
-
-            
         }
+    };
+
+    const handleSignUp = () => {
+        window.location.href = 'https://wa.me/YOUR_WHATSAPP_BUSINESS_NUMBER'; // Replace with your WhatsApp Business number
+    };
+
+    const handleDemoLogin = () => {
+        const demoUsername = 'demoUser';
+        const demoPassword = 'demoPassword';
+        setUser({ username: demoUsername });
+        Cookies.set('user_id', 'demoUserId'); // Set demo user_id in cookies
+        navigate('/homepage');
     };
 
     return (
@@ -89,7 +91,16 @@ function Login({setUser}) {
                         required
                     />
                 </div>
-                <button type="submit">Login</button>
+                <div className="button-container">
+                    <button type="submit" className="login-button">Login</button>
+                    <button type="button" onClick={handleSignUp} className="sign-up-button">
+                        <img src={whatsappLogo} alt="WhatsApp" className="whatsapp-logo" />
+                        Sign Up
+                    </button>
+                </div>
+                <button type="button" onClick={handleDemoLogin} className="demo-login-button">
+                    Demo Login
+                </button>
                 {error && <p className="error-message">{error}</p>}
             </form>
         </div>

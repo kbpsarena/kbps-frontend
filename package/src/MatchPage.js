@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './MatchPage.css';
-import Stack from 'react-bootstrap/Stack';
-import Button from 'react-bootstrap/Button';
+import './const-file';
+
+// import Stack from 'react-bootstrap/Stack';
+// import Button from 'react-bootstrap/Button';
 
 
 const MatchPage = () => {
