@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './MatchList.css'; // Ensure you create and import the CSS file
 import './const-file';
 import { getUserId } from './Utils'; // Adjust the path as needed
+import Cookies from 'js-cookie';
 
 
 
@@ -36,6 +37,7 @@ const MatchList = () => {
         console.log('Fetched data:', data); // Add this line to check the response
         setMatches(data.matches);
         setUserData(data.user_data);
+        Cookies.set("user_money", data.user_data.user_money);
       } catch (error) {
         console.error('Error fetching match data:', error);
       }

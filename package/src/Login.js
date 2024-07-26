@@ -57,12 +57,22 @@ function Login({ setUser }) {
         window.location.href = 'https://wa.me/YOUR_WHATSAPP_BUSINESS_NUMBER'; // Replace with your WhatsApp Business number
     };
 
-    const handleDemoLogin = () => {
-        const demoUsername = 'demoUser';
-        const demoPassword = 'demoPassword';
-        setUser({ username: demoUsername });
-        Cookies.set('user_id', 'demoUserId'); // Set demo user_id in cookies
+    const handleDemoLogin = async () => {
+        const source = axios.CancelToken.source();
+            const timeout = setTimeout(() => {
+                source.cancel('Request timed out');
+            }, 5000); // 5 seconds in milliseconds
+            const response = await axios.post(`http://localhost:8080/is-verified-user`, { user_name: 'demom0KL', password: 'Hwfw57YJuPBG' }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                cancelToken: source.token,
+            });
+        setUser({ username });
+        Cookies.set('user_id', response.data.user_id); // Set demo user_id in cookies
         navigate('/homepage');
+        setUsername(''); // Clear the username field
+        setPassword(''); // Clear the password field
     };
 
     return (
