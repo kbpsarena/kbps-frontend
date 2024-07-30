@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './MatchPage.css';
-import { getUserMoney } from './Utils.js';
+import { getUserMoney, getUserId } from './Utils.js';
 
 const MatchPage = () => {
   const { matchId } = useParams();
@@ -15,6 +15,7 @@ const MatchPage = () => {
   const [orderStatus, setOrderStatus] = useState(null);
   const [orderMessage, setOrderMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isPlaceOrderButtonVisible, setIsPlaceOrderButtonVisible] = useState(true);
   const userMoney = getUserMoney();
   const [message, setMessage] = useState(`tere pass ${userMoney} rupay hai`);
   const [placingOddsMessage, setPlacingOddsMessage] = useState('');
@@ -98,6 +99,7 @@ const MatchPage = () => {
     setSelectedOdd(odd);
     setBiddingAmount(0);
     setIsBottomSheetOpen(true);
+    setIsPlaceOrderButtonVisible(true);
     setMessage(`tere pass ${userMoney} rupay hai`);
     setPlacingOddsMessage(`You are placing on ${odd.replace(/_/g, ' ')} odds`);
   };
@@ -122,7 +124,7 @@ const MatchPage = () => {
     setIsLoading(true);
     try {
       const response = await axios.post('http://localhost:8080/update/odds', {
-        user_id: 2, // Replace with actual user_id
+        user_id: getUserId(), // Replace with actual user_id
         match_id: matchId,
         user_money: biddingAmount,
         state_name: selectedOdd
@@ -135,6 +137,7 @@ const MatchPage = () => {
       if (response.status === 200) {
         setOrderStatus('success');
         setOrderMessage('Order placed');
+        setIsPlaceOrderButtonVisible(false); // Hide the button after successful order
         setTimeout(() => {
           setIsBottomSheetOpen(false);
           setOrderStatus(null);
@@ -247,7 +250,7 @@ const MatchPage = () => {
         {isLoading ? (
           <div className="loader"></div>
         ) : (
-          <button onClick={placeOrder}>Place Order</button>
+          isPlaceOrderButtonVisible && <button onClick={placeOrder}>Place Order</button>
         )}
         {orderMessage && (
           <div className={`order-message ${orderStatus}`}>

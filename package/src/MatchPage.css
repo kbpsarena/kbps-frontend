@@ -127,7 +127,7 @@
 .odds-tile {
   width: 100%; /* Make tiles take full width of the grid cell */
   height: 100px; /* Adjust the height as needed */
-  background-color: blue;
+  background-color: #4169E1; /* Matching color */
   color: white;
   display: flex;
   align-items: center;
@@ -141,31 +141,65 @@
 }
 
 .odds-tile:hover {
-  background-color: orange;
+  background-color: #FFA500; /* Orange on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .odds-container {
+    grid-template-columns: repeat(4, 1fr); /* Maintain 4 columns */
+  }
+}
+
+@media (max-width: 900px) {
+  .odds-container {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  }
+}
+
+@media (max-width: 600px) {
+  .odds-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  }
+
+  .live-score-container {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+  }
+
+  .team,
+  .match-status {
+    flex: 1 1 100%;
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .match-status {
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .odds-container {
+    grid-template-columns: 1fr; /* 1 column */
+  }
+  
+  .odds-tile {
+    font-size: 12px; /* Smaller text for small screens */
+    height: 80px; /* Adjust height */
+  }
 }
 
 /* Bottom Sheet Styles */
-/* .bottom-sheet {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: white;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-  transform: translateY(100%);
-  transition: transform 0.3s ease-in-out;
-}
-
-.bottom-sheet.active {
-  transform: translateY(0);
-} */
-
 .bottom-sheet {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: white;
+  background-color: #4169E1; /* Matching background color */
+  color: white;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   display: none;
@@ -210,12 +244,12 @@
 .expected-money {
   margin-left: 10px;
   font-size: 16px;
-  color: #333;
+  color: #fff; /* Adjust text color */
 }
 
 /* Message Styles */
 .aukaat-message {
-  color: black; /* Default color */
+  color: white; /* Adjusted default color */
   margin-top: 10px;
   font-weight: bold;
 }

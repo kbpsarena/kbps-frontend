@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './Login.css';
@@ -9,7 +9,17 @@ function Login({ setUser }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [joinedCount, setJoinedCount] = useState(10); // State for people joined
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const randomCount = Math.floor(Math.random() * 91) + 10; // Random number between 10 and 100
+            setJoinedCount(randomCount);
+        }, 3000); // Update every 3 seconds
+
+        return () => clearInterval(interval);
+    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -113,6 +123,9 @@ function Login({ setUser }) {
                 </button>
                 {error && <p className="error-message">{error}</p>}
             </form>
+            <div className="joined-count">
+                {joinedCount} people joined the platform 😍
+            </div>
         </div>
     );
 }
