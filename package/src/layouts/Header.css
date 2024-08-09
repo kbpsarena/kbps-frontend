@@ -1,0 +1,19 @@
+/* .global{
+    background-color: ;
+} */
+
+.expose_div{
+    flex: 10%;
+
+}
+
+
+.fixedElement,.global {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cdn{
+   display:none;
+  }

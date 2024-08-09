@@ -6,7 +6,7 @@ import './const-file';
 import { getUserId } from './Utils'; // Adjust the path as needed
 import Cookies from 'js-cookie';
 
-
+import Loading from './Loading';
 
 
 
@@ -18,7 +18,7 @@ const MatchList = () => {
       setIsVisible((prev) => !prev);
     }, 5);
 
-    return () => clearInterval(intervalId); // Cleanup on unmount
+    return () => clearInterval(intervalId); // Cleanup ounmount
   }, []);
   console.log("I am inside MatchList");
   const [matches, setMatches] = useState([]);
@@ -58,14 +58,14 @@ const MatchList = () => {
   let status = "pending";
   return (
     <div>
-      <header className="App-header">
+      <header >
         {userData.user_name ? (
-          <>
+          <header className="App-header">
             <h1>Welcome, {userData.user_name}</h1>
             <p>Your balance: ${userData.user_money?.toFixed(2)}</p>
-          </>
+          </header>
         ) : (
-          <h1>Loading...</h1>
+          <Loading/>
         )}
       </header>
       <main>

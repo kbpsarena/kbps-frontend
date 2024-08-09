@@ -1,0 +1,70 @@
+/* LoadingScreen.css */
+/* 
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #274956;
+  }
+  
+  .loading-text {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    animation: shine 2s infinite;
+  }
+  
+  @keyframes shine {
+    0% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+   */
+
+   /* FlyingLettersScreen.css */
+
+.flying-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #274956 fly;
+    overflow: hidden;
+    padding : 0px 0px 500px 0px;
+  }
+  
+  .flying-letter {
+    display: inline-block;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    opacity: 0;
+    transform: translateY(100px);
+    animation: fly 5s forwards;
+  }
+  
+  @keyframes fly {
+    0% {
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+        0% { opacity: 0; transform: translateY(-10px); }
+        50% { opacity: 1; transform: translateY(5px); }
+        100% { opacity: 0; transform: translateY(-10px); }
+    
+    
+    
+  }
+  

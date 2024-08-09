@@ -37,7 +37,7 @@
   left: 0;
   width: 250px;
   height: 100%;
-  background-color: #343a40;
+  background-color: #2f3338;
   overflow-x: hidden;
   transition: transform 0.3s ease-in-out;
 }
@@ -66,10 +66,18 @@
 }
 
 .sidebar .nav-link {
-  color: white;
+  color: rgb(116, 37, 37);
 }
 
 .sidebar .nav-link:hover {
   background-color: #495057;
   color: white;
 }
+
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-10px); }
+  50% { opacity: 1; transform: translateY(5px); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
