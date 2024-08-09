@@ -11,6 +11,15 @@ import Cookies from 'js-cookie';
 
 
 const MatchList = () => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setIsVisible((prev) => !prev);
+    }, 5);
+
+    return () => clearInterval(intervalId); // Cleanup on unmount
+  }, []);
   console.log("I am inside MatchList");
   const [matches, setMatches] = useState([]);
   const [userData, setUserData] = useState({});
@@ -46,7 +55,7 @@ const MatchList = () => {
     fetchMatches();
   }, []);
 
-  
+  let status = "pending";
   return (
     <div>
       <header className="App-header">
@@ -66,12 +75,16 @@ const MatchList = () => {
               <Link to={`/matchpage/${match.match_id}`}>
                 <div className="match-details">
                   <span className="team-name">{match.team_one}</span>
-                  <span className="score">{match.team_one_score || 'N/A'}</span>
-                  <span className="overs">{match.team_one_overs || 'N/A'}</span>
                   <span className="vs">vs</span>
                   <span className="team-name">{match.team_two}</span>
-                  <span className="score">{match.team_two_score || 'N/A'}</span>
-                  <span className="overs">{match.team_two_overs || 'N/A'}</span>
+                  <span>{status === "pending" ? (
+                      <span className="p-2 bg-danger rounded-circle d-inline-block ms-3"></span>
+                    ) : status === "holt" ? (
+                      <span className="p-2 bg-warning rounded-circle d-inline-block ms-3"></span>
+                    ) : (
+                      <span className="p-2 bg-success rounded-circle d-inline-block ms-3"></span>
+                    )}
+                    </span>
                 </div>
               </Link>
             </li>

@@ -1,0 +1,107 @@
+/* EventDetail.css */
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+.s12 {
+    width: 100%;
+}
+
+.l6 {
+    width: 50%;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.event-name {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.short_date_time {
+    font-size: 14px;
+    color: #555;
+}
+
+.event-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.right {
+    margin-left: auto;
+}
+
+.bm-active {
+    background-color: #ff0;
+}
+
+.inplay_dot {
+    color: red;
+}
+
+.inplay-active {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.minus {
+    font-size: 12px;
+    color: #999;
+}
+
+.match_odds {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.odds_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.odd {
+    font-size: 14px;
+    color: #333;
+}
+
+.volume {
+    font-size: 12px;
+    color: #999;
+}
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.center-align {
+    text-align: center;
+}
+
+.hide-on-med-and-down {
+    display: none;
+}
+
+@media only screen and (min-width: 992px) {
+    .hide-on-med-and-down {
+        display: block;
+    }
+}

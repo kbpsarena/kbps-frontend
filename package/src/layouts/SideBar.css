@@ -1,0 +1,75 @@
+/* App.css
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #343a40;
+    overflow-x: hidden;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .sidebar.hide {
+    transform: translateX(-100%);
+  }
+  
+ 
+  .sidebar .sidebarNav {
+    padding: 0;
+  }
+  
+  .sidebar .nav-link {
+    color: white;
+  }
+  
+  .sidebar .nav-link:hover {
+    background-color: #495057;
+    color: white;
+  } */
+  /* App.css */
+/* App.css */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #343a40;
+  overflow-x: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.hide {
+  transform: translateX(-100%);
+}
+
+.sidebar.showSidebar {
+  transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.showSidebar {
+    transform: translateX(0);
+  }
+}
+
+/* Sidebar content styling */
+.sidebar .sidebarNav {
+  padding: 0;
+}
+
+.sidebar .nav-link {
+  color: white;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #495057;
+  color: white;
+}

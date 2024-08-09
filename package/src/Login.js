@@ -24,6 +24,7 @@ function Login({ setUser }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setError('');
+        
 
         if (username.length < 5 || username.length > 15) {
             setError('Username must be between 5 and 15 characters.');
@@ -33,7 +34,7 @@ function Login({ setUser }) {
             setError('Password must be between 8 and 20 characters.');
             return;
         }
-
+        
         try {
             const source = axios.CancelToken.source();
             const timeout = setTimeout(() => {
@@ -49,6 +50,7 @@ function Login({ setUser }) {
             if (response.data.valid_user) {
                 setUser({ username });
                 Cookies.set('user_id', response.data.user_id); // Set user_id in cookies
+                localStorage.setItem('user_id',response.data.user_id);
                 console.log('User ID:', response.data.user_id);
                 navigate('/homepage'); // Navigate to home page after successful login
                 setUsername(''); // Clear the username field

@@ -15,7 +15,6 @@ import {
 } from "reactstrap";
 import { ReactComponent as LogoWhite } from "../assets/images/logos/xtremelogowhite.svg";
 import user1 from "../assets/images/users/user1.jpg";
-
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
@@ -28,7 +27,7 @@ const Header = () => {
     document.getElementById("sidebarArea").classList.toggle("showSidebar");
   };
   return (
-    <Navbar color="primary" dark expand="md" className="bg-gradient">
+    <Navbar color="unset" dark expand="md" className="bg-gradient" >
       <div className="d-flex align-items-center">
         <NavbarBrand href="/" className="d-lg-none">
           <LogoWhite />

@@ -78,15 +78,16 @@
 }
 
 .team {
-  flex: 0 0 25%;
-  max-width: 25%;
+  flex: 0 0 37.5%;
+  /* max-width: 25%; */
+  /* min-width:190px; */
   text-align: center;
   padding: 0 10px; /* Adjust padding as needed */
 }
 
 .match-status {
-  flex: 0 0 50%;
-  max-width: 50%;
+  flex: 0 0 25%;
+  /* max-width: 50%; */
   text-align: center;
   text-transform: uppercase;
   font-weight: 700;
@@ -126,7 +127,7 @@
 
 .odds-tile {
   width: 100%; /* Make tiles take full width of the grid cell */
-  height: 100px; /* Adjust the height as needed */
+  height: 40px; /* Adjust the height as needed */
   background-color: #4169E1; /* Matching color */
   color: white;
   display: flex;
@@ -163,9 +164,9 @@
   }
 
   .live-score-container {
-    flex-direction: column;
+    /* flex-direction: column;
     align-items: flex-start;
-    height: auto;
+    height: auto; */
   }
 
   .team,

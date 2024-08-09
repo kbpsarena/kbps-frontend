@@ -5,6 +5,8 @@ export const getUserId = () => {
     return Cookies.get('user_id');
 };
 
+
+
 export const getUserMoney = () => {
     return Cookies.get('user_money');
 };

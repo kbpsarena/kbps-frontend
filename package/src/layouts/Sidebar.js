@@ -1,12 +1,15 @@
 import { Button, Nav, NavItem } from "reactstrap";
 import Logo from "./Logo";
 import { Link, useLocation } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useNavigate } from 'react-router-dom';
+import { getUserId } from '../Utils'; 
 
 const navigation = [
   {
     // title: "DashBoard",
     title: "HomePage",
-    href: "/starter",
+    href: "/homepage",
     icon: "bi bi-speedometer2",
   },
   {
@@ -65,10 +68,19 @@ const navigation = [
 ];
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const userId = getUserId();
   const showMobilemenu = () => {
     document.getElementById("sidebarArea").classList.toggle("showSidebar");
   };
   let location = useLocation();
+
+  const handleLogout = () => {
+
+    // Cookies.remove(userId,{ path: '/' }); // Remove user_id from cookies
+    console.log("jghjghkj");
+    navigate('/login');
+  }
 
   return (
     <div className="p-3">
@@ -105,7 +117,7 @@ const Sidebar = () => {
             tag="a"
             target="_blank"
             className="mt-3"
-            href="https://wrappixel.com/templates/monster-react-admin/?ref=33"
+            onClick={handleLogout}
           >
             Log Out
           </Button>

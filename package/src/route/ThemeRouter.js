@@ -51,7 +51,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import FullLayout from '../layouts/FullLayout';
 import Login from '../Login';
-import Starter from '../views/Starter';
+
 import MainPage from '../components/dashboard/MainPage';
 import About from '../views/About';
 import Alerts from '../views/ui/Alerts';
@@ -65,7 +65,7 @@ import MatchList from '../MatchList';
 import MatchPage from '../MatchPage';
 import Breadcrumbs from '../views/ui/Breadcrumbs';
 import ProtectedRoute from '../ProtectedRoute'; // Assuming you have a ProtectedRoute component
-
+import EventDetail from '../Event';
 //explain me the below code
 
 const ThemeRoutes = (user, setUser) => [
@@ -75,7 +75,8 @@ const ThemeRoutes = (user, setUser) => [
     // TODO: we can use this in future
     element: <FullLayout />,
     children: [
-      { path: '/', element: user ? <Navigate to="/starter" /> : <Navigate to="/login" /> },
+      { path: '/', element: user ? <Navigate to="/homepage" /> : <Navigate to="/login" /> },
+      {path:'/login', element: user ? <Navigate to="/homepage" /> : <Navigate to="/login" /> },
       { path: '/homepage', element: user ? <MatchList /> : <Navigate to="/login" /> },
       {path: '/matchpage/:matchId', element: user ? <MatchPage /> : <Navigate to="/login" />},
       // {
@@ -85,6 +86,7 @@ const ThemeRoutes = (user, setUser) => [
       //     { path: 'mainPage', element: <ProtectedRoute element={<MainPage />} /> },
       //   ],
       // },
+      {path:'/earnings', element: user ? <EventDetail />  : <Navigate to="/login" />},
       { path: '/about', element: user ? <ProtectedRoute element={<About />} /> : <Navigate to="/login" /> },
       { path: '/alerts', element: user ? <ProtectedRoute element={<Alerts />} /> : <Navigate to="/login" /> },
       { path: '/badges', element: user ? <ProtectedRoute element={<Badges />} /> : <Navigate to="/login" /> },
