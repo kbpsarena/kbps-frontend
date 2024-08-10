@@ -31,7 +31,7 @@ import {useRoutes} from 'react-router-dom'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ThemeRoutes from './route/ThemeRouter';
 import { AuthProvider } from './AuthContext';
-
+import './App.css';
 
   
   const App = () => {
@@ -41,7 +41,7 @@ import { AuthProvider } from './AuthContext';
   const routing = useRoutes(ThemeRoutes(user, setUser));
 
   return (
-    <div className="dark">
+    <div className="dark" >
       {routing}
     </div>
   );

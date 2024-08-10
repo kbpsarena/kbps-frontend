@@ -3,16 +3,14 @@
 } */
 
 .expose_div{
-    padding: 5px;
+    padding: 0px 0px 0px 99px;
     font-weight: bold;
-    background: linear-gradient(45deg, #f3ec78, #af4261, #f3ec78);
-    -webkit-background-clip: text;
-    color: transparent;
+    color: black;
     
 }
 
 .balance_div{
-    padding: 5px;
+    padding: 0px 0px 0px 10px;
     font-weight: bold;
     background: linear-gradient(45deg, #f3ec78, #af4261, #f3ec78);
     -webkit-background-clip: text;
