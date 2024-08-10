@@ -190,6 +190,7 @@
 @media (max-width: 400px) {
   .odds-container {
     grid-template-columns: 1fr; /* 1 column */
+    
   }
   
   .odds-tile {

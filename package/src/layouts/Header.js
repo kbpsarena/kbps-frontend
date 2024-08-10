@@ -59,7 +59,7 @@ const Header = () => {
                         <td>: 0.95</td>
                         </tr>
                         </table>"
-                    >$(2)</span>PTI
+                    >2</span>PTI
                 </div>
                 </div>
             

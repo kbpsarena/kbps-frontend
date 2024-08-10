@@ -3,15 +3,28 @@
 } */
 
 .expose_div{
-    flex: 10%;
-
+    padding: 5px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #f3ec78, #af4261, #f3ec78);
+    -webkit-background-clip: text;
+    color: transparent;
+    
 }
 
+.balance_div{
+    padding: 5px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #f3ec78, #af4261, #f3ec78);
+    -webkit-background-clip: text;
+    color: transparent;
+}
 
 .fixedElement,.global {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 25px;
+    font-size: 13px;
   }
 
   .cdn{
