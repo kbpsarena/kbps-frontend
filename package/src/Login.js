@@ -21,7 +21,42 @@ function Login({ setUser }) {
         return () => clearInterval(interval);
     }, []);
 
+    useEffect(() => {
+        const checkLoginStatus = async () => {
+            try {
+                const source1 = axios.CancelToken.source();
+                const timeout = setTimeout(() => {
+                    source1.cancel('Request timed out');
+                }, 5000); // 5 seconds in milliseconds
+                const response1 = await axios.post(
+                    `http://localhost:8080/user/is-logged-in`, 
+                    { user_id: localStorage.getItem('user_id') }, 
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        cancelToken: source1.token,
+                    }
+                );
+                const isLoginRequired = !response1.data.logged_in;
+                
+                if (!isLoginRequired) {
+                    Cookies.set('user_id', localStorage.getItem('user_id')); // Set user_id in cookies
+                    setUser('demo');
+                    navigate('/homepage'); // Navigate to home page after successful login
+                    return; // Prevent further execution if the user is logged in
+                }
+            } catch (error) {
+                console.error('An error occurred in is_logged_in', error);
+            }
+        };
+
+        checkLoginStatus();
+    }, [navigate, setUser]); // Empty dependency array ensures this runs only once, on mount
+
+
     const handleSubmit = async (event) => {
+        
         event.preventDefault();
         setError('');
         

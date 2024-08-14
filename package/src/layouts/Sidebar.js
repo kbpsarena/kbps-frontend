@@ -4,6 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useNavigate } from 'react-router-dom';
 import { getUserId } from '../Utils'; 
+import axios from 'axios';
+
 const navigation = [
   {
     // title: "DashBoard",
@@ -75,9 +77,19 @@ const Sidebar = () => {
   let location = useLocation();
 
   const handleLogout = () => {
-
+    // const source = axios.CancelToken.source();
+    //     setTimeout(() => {
+    //       source.cancel('Request timed out');
+    //     }, 50000);
+    //     const response = axios.post('http://localhost:8080/user/logout', { userId: getUserId() }, {
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       cancelToken: source.token,
+    //     });
     // Cookies.remove(userId,{ path: '/' }); // Remove user_id from cookies
     console.log("jghjghkj");
+    localStorage.removeItem('user_id');
     navigate('/login');
   }
 

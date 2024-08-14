@@ -22,28 +22,28 @@ const MatchPage = () => {
   const [blinkTiles, setBlinkTiles] = useState({}); // Add this state
   const bottomSheetRef = useRef(null);
 
-  useEffect(() => {
-    const fetchMatchData = async () => {
-      try {
-        const source = axios.CancelToken.source();
-        setTimeout(() => {
-          source.cancel('Request timed out');
-        }, 50000);
+  // useEffect(() => {
+  //   const fetchMatchData = async () => {
+  //     try {
+  //       const source = axios.CancelToken.source();
+  //       setTimeout(() => {
+  //         source.cancel('Request timed out');
+  //       }, 50000);
 
-        const response = await axios.post('http://localhost:8080/match/get', { match_id: matchId }, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          cancelToken: source.token,
-        });
-        setMatchData(response.data);
-      } catch (error) {
-        console.error('Error fetching match data:', error);
-      }
-    };
+  //       const response = await axios.post('http://localhost:8080/match/get', { match_id: matchId }, {
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         cancelToken: source.token,
+  //       });
+  //       setMatchData(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching match data:', error);
+  //     }
+  //   };
 
-    fetchMatchData();
-  }, [matchId]);
+  //   fetchMatchData();
+  // }, [matchId]);
 
   useEffect(() => {
     const socket = new WebSocket('ws://localhost:8080/ws/odds');
@@ -54,7 +54,11 @@ const MatchPage = () => {
     };
 
     socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
+      console.log('Received message:', event.data);
+      const data1 = JSON.parse(event.data);
+      let data = data1.give_odds_response;
+      setMatchData(data1.match_page_response);
+      console.log('bacche data1.match_page_reponse hai {}', data1.match_page_response);
       // Check which odds have changed and update blinkTiles state
       setOddsData(prevOddsData => {
         if (prevOddsData) {
@@ -162,7 +166,7 @@ const MatchPage = () => {
 
   const LiveScoreSection = () => {
     const lastBallResults = matchData.last_balls_results || [];
-    const formattedLastBallResults = lastBallResults.slice(-6).reverse().join(' ');
+    const formattedLastBallResults = lastBallResults.slice(0,6).join(' ');
 
     return (
       <div className="live-score-container">

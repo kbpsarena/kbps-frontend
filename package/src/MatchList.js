@@ -45,8 +45,11 @@ const MatchList = () => {
         const data = response.data;
         console.log('Fetched data:', data); // Add this line to check the response
         setMatches(data.matches);
-        setUserData(data.user_data);
-        Cookies.set("user_money", data.user_data.user_money);
+        setUserData({
+          user_name: 'parag',
+          user_money: 100
+        });
+        Cookies.set("user_money", 100);
       } catch (error) {
         console.error('Error fetching match data:', error);
       }
@@ -55,7 +58,6 @@ const MatchList = () => {
     fetchMatches();
   }, []);
 
-  let status = "pending";
   return (
     <div>
       <header >
@@ -77,11 +79,9 @@ const MatchList = () => {
                   <span className="team-name">{match.team_one}</span>
                   <span className="vs">vs</span>
                   <span className="team-name">{match.team_two}</span>
-                  <span>{status === "pending" ? (
+                  <span>{match.is_live_match === false ? (
                       <span className="p-2 bg-danger rounded-circle d-inline-block ms-3"></span>
-                    ) : status === "holt" ? (
-                      <span className="p-2 bg-warning rounded-circle d-inline-block ms-3"></span>
-                    ) : (
+                    ) :  (
                       <span className="p-2 bg-success rounded-circle d-inline-block ms-3"></span>
                     )}
                     </span>
