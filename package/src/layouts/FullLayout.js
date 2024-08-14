@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import { Container } from "reactstrap";
+import MatchList from "../MatchList";
 
 const FullLayout = () => {
   return (
@@ -17,9 +18,9 @@ const FullLayout = () => {
           {/********header**********/}
           <Header />
           {/********Middle Content**********/}
-          <Container className="p-4 wrapper" fluid>
-            <Outlet />
-          </Container>
+          <div className="col">
+            <Outlet/>
+          </div>
         </div>
       </div>
     </main>
