@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Language from "../../src/assets/images/logos/Language.png";
 import {
   Navbar,
   Collapse,
@@ -74,7 +75,7 @@ const Header = () => {
             </div>
         </div>
     
-    <Navbar >
+    <Navbar className="FlexBana">
       <div className="global align-items-center">
         <Button
           color="primary"
@@ -86,6 +87,19 @@ const Header = () => {
         <NavbarBrand href="/" className="cdn d-lg-none">
           <LogoWhite />
         </NavbarBrand>
+      </div>
+      <div className= "LanguageTab">
+        Language : 
+      </div>
+      <div>
+      
+      <img
+                        src={Language}
+                        className="LanguageSelect"
+                        alt="avatar"
+                        width="45"
+                        height="45"
+                      />
       </div>
     </Navbar>
     </div>

@@ -28,3 +28,21 @@
   .cdn{
    display:none;
   }
+
+  .FlexBana{
+    direction: flexbox;
+  }
+
+  .global {
+    flex: 60%;
+    padding: 0px 270px 0px 0px;
+  }
+
+  .LanguageTab{
+    flex:20% ;
+    padding: 0px 0px 0px 50px;
+  }
+
+  .LanguageSelector{
+    flex:20%;
+}
