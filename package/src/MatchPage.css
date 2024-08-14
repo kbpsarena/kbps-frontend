@@ -131,9 +131,10 @@
 /* Odds Tile Styles */
 .odds-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columns */
-  gap: 20px; /* Space between the tiles */
+  grid-template-columns: repeat(2, 1fr); /* 4 columns */
+  gap: 10px; /* Space between the tiles */
   margin-top: 20px;
+  margin-left:5px;
   justify-content: center;
 }
 
@@ -160,13 +161,13 @@
 /* Responsive Styles */
 @media (max-width: 1200px) {
   .odds-container {
-    grid-template-columns: repeat(4, 1fr); /* Maintain 4 columns */
+    grid-template-columns: repeat(2, 1fr); /* Maintain 4 columns */
   }
 }
 
 @media (max-width: 900px) {
   .odds-container {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-template-columns: repeat(2, 1fr); /* 3 columns */
   }
 }
 
@@ -206,13 +207,16 @@
 
 @media (max-width: 400px) {
   .odds-container {
-    grid-template-columns: 1fr; /* 1 column */
+    grid-template-columns: repeat(2,1fr); /* 1 column */
     
   }
   
   .odds-tile {
     font-size: 12px; /* Smaller text for small screens */
-    height: 80px; /* Adjust height */
+    height: 40px; /* Adjust height */
+    width:95%;
+    display: flex;
+    padding :5px 5px;
   }
   .live-score-container{
     width: 100%;
