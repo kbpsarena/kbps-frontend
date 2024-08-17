@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './MatchPage.css';
 import { getUserMoney, getUserId } from './Utils.js';
+import Cookies from 'js-cookie';
 
 const MatchPage = () => {
   const { matchId } = useParams();
@@ -54,11 +55,11 @@ const MatchPage = () => {
     };
 
     socket.onmessage = (event) => {
-      console.log('Received message:', event.data);
+      // console.log('Received message:', event.data);
       const data1 = JSON.parse(event.data);
       let data = data1.give_odds_response;
       setMatchData(data1.match_page_response);
-      console.log('bacche data1.match_page_reponse hai {}', data1.match_page_response);
+      // console.log('bacche data1.match_page_reponse hai {}', data1.match_page_response);
       // Check which odds have changed and update blinkTiles state
       setOddsData(prevOddsData => {
         if (prevOddsData) {
@@ -125,18 +126,30 @@ const MatchPage = () => {
   };
 
   const placeOrder = async () => {
+    if (!matchData) {
+      console.error('Match data is not fully loaded yet.');
+      setOrderStatus('failure');
+      setOrderMessage('Match data not available');
+      return;
+    }
     setIsLoading(true);
     try {
       const response = await axios.post('http://localhost:8080/update/odds', {
         user_id: getUserId(), // Replace with actual user_id
         match_id: matchId,
-        user_money: biddingAmount,
-        state_name: selectedOdd
+        money_on_stake: biddingAmount,
+        state_name: selectedOdd,
+        team_one_name: matchData.team_one_symbol,
+        team_two_name: matchData.team_two_symbol,
+        team_one_ball: matchData.overs_by_team_one,
+        team_two_ball: matchData.overs_by_team_two,
       }, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
+
+      localStorage.setItem('user_money', response.data.user_money); // Update user money in cookies
 
       if (response.status === 200) {
         setOrderStatus('success');

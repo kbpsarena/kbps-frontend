@@ -28,6 +28,29 @@ const MatchList = () => {
   useEffect(() => {
     const fetchMatches = async () => {
       try {
+        const source1 = axios.CancelToken.source();
+            const timeout1 = setTimeout(() => {
+                source1.cancel('Request timed out');
+            }, 50000); // 5 seconds in milliseconds
+            const response1 = await axios.post('http://localhost:8080/user/get', { user_id : userId}, 
+                {
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                cancelToken: source1.token,});
+
+            const source2 = axios.CancelToken.source();
+            const timeout2 = setTimeout(() => {
+                source1.cancel('Request timed out');
+            }, 50000); // 5 seconds in milliseconds
+            const response2 = await axios.post('http://localhost:8080/get/payout', { user_id : userId}, 
+                {
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                cancelToken: source2.token,});
+    
+
         const source = axios.CancelToken.source();
             const timeout = setTimeout(() => {
                 source.cancel('Request timed out');
@@ -46,10 +69,10 @@ const MatchList = () => {
         console.log('Fetched data:', data); // Add this line to check the response
         setMatches(data.matches);
         setUserData({
-          user_name: 'parag',
-          user_money: 100
+          user_name: response1.data.user.name,
+          user_money: response2.data.current_payout.totalAmount
         });
-        Cookies.set("user_money", 100);
+        localStorage.setItem("user_money", response2.data.current_payout.totalAmount);
       } catch (error) {
         console.error('Error fetching match data:', error);
       }

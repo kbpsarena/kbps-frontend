@@ -8,5 +8,5 @@ export const getUserId = () => {
 
 
 export const getUserMoney = () => {
-    return Cookies.get('user_money');
+    return localStorage.getItem('user_money');
 };

@@ -100,6 +100,37 @@
     display: none;
 }
 
+/* Base styles for the circle */
+.p-2 {
+    padding: 0.5rem; /* Adjust the size of the circle */
+  }
+  
+  .rounded-circle {
+    width: 1rem; /* Diameter of the circle */
+    height: 1rem; /* Diameter of the circle */
+    border-radius: 50%; /* Makes the element a circle */
+    display: inline-block;
+  }
+  
+  /* Colors for different statuses */
+  .bg-danger {
+    background-color: red; /* Color for "lost" status */
+  }
+  
+  .bg-warning {
+    background-color: yellow; /* Color for "in_progress" status */
+  }
+  
+  .bg-success {
+    background-color: green; /* Color for any other status */
+  }
+  
+  /* Additional utility classes */
+  .ms-3 {
+    margin-left: 1rem; /* Space between the text and the circle */
+  }
+  
+
 @media only screen and (min-width: 992px) {
     .hide-on-med-and-down {
         display: block;

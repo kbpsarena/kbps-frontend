@@ -12,7 +12,8 @@ import Cookies from 'js-cookie';
 
 const EventDetail = () => {
     console.log("I am inside MatchList");
-    const [matches, setMatches] = useState([]);
+    const [historicalData, setMatches] = useState([]);
+    const [matchDetails, setMatchDetails] = useState([]);
     const [userData, setUserData] = useState({});
     const userId = getUserId(); 
   
@@ -23,7 +24,7 @@ const EventDetail = () => {
               const timeout = setTimeout(() => {
                   source.cancel('Request timed out');
               }, 50000); // 5 seconds in milliseconds
-              const response = await axios.post('http://localhost:8080/homepage/get', { user_id : userId}, 
+              const response = await axios.post('http://localhost:8080/transactions/get', { user_id : userId}, 
                   {
                   headers: {
                     'Content-Type': 'application/json',
@@ -33,11 +34,28 @@ const EventDetail = () => {
           // if (!response.ok) {
           //   throw new Error('Network response was not ok');
           // }
-          const data = response.data;
-          console.log('Fetched data:', data); // Add this line to check the response
-          setMatches(data.matches);
-          setUserData(data.user_data);
-          Cookies.set("user_money", data.user_data.user_money);
+          const data = response.data.get_historical_transaction_list;
+          data.forEach((item) => {
+            let detailsArray = [];
+            if (typeof item.match_details === 'string') {
+              detailsArray = item.match_details.split('$');
+              // Proceed with using detailsArray
+            } else {
+              console.error('match_details is not a string:', item.match_details);
+              // Handle the case where match_details is not a string
+            }
+        
+            item.team_one_name = detailsArray[0];
+            item.team_two_name = detailsArray[1];
+            item.overs_by_team_one = detailsArray[2];
+            item.overs_by_team_two = detailsArray[3];
+        });
+
+          setMatches(data);
+          const detailsArray = data.match_details.split('$');
+
+          // Extract each variable
+
         } catch (error) {
           console.error('Error fetching match data:', error);
         }
@@ -60,51 +78,34 @@ const EventDetail = () => {
           <Table className="no-wrap mt-3 align-middle" responsive borderless>
             <thead>
               <tr>
-                <th>Team Lead</th>
-                <th>Project</th>
-
+                <th>Match Details</th>
+                <th>Win Status</th>
                 <th>Status</th>
-                <th>Weeks</th>
-                <th>Budget</th>
-                <th>Status</th>
-                <th>Weeks</th>
-                <th>Budget</th>
-
+                <th>Odd State</th>
+                <th>Odd Value</th>
+                <th>Total Money</th>
+                <th>Money On Stake</th>
+                <th>Date</th>
               </tr>
             </thead>
             <tbody>
-              {matches.map((tdata, index) => (
+              {historicalData.map((tdata, index) => (
                 <tr key={index} className="border-top">
+                  <td>{tdata.match_details}</td>
                   <td>
-                    <div className="d-flex align-items-center p-2">
-                      <img
-                        src={user1}
-                        className="rounded-circle"
-                        alt="avatar"
-                        width="45"
-                        height="45"
-                      />
-                      <div className="ms-3">
-                        <h6 className="mb-0">{tdata.team_one}</h6>
-                        <span className="text-muted"></span>
-                      </div>
-                    </div>
-                  </td>
-                  <td>{}dfg</td>
-                  <td>
-                    {tdata.status === "pending" ? (
+                    {tdata.state_of_winning === "lost" ? (
                       <span className="p-2 bg-danger rounded-circle d-inline-block ms-3"></span>
-                    ) : tdata.status === "holt" ? (
+                    ) : tdata.status === "in_progress" ? (
                       <span className="p-2 bg-warning rounded-circle d-inline-block ms-3"></span>
                     ) : (
                       <span className="p-2 bg-success rounded-circle d-inline-block ms-3"></span>
                     )}
                   </td>
-                  <td>{}fdf</td>
-                  <td>{}dfer</td>
-                  <td>{}fdf</td>
-                  <td>{}dfer</td>
-                  <td>{}fdf</td>
+                  <td>{tdata.odd_state}</td>
+                  <td>{tdata.odd}</td>
+                  <td>${tdata.odd*tdata.money_on_stake}</td>
+                  <td>{tdata.money_on_stake}</td>
+                  <td>{tdata.date}</td>
                 </tr>
               ))}
             </tbody>
