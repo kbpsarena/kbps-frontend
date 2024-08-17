@@ -33,17 +33,22 @@ import ThemeRoutes from './route/ThemeRouter';
 import { AuthProvider } from './AuthContext';
 import './App.css';
 
+
   
   const App = () => {
   const [user, setUser] = useState(null);
-  
+ 
+
   // Define routing
   const routing = useRoutes(ThemeRoutes(user, setUser));
 
   return (
+ 
     <div className="dark" >
+      
       {routing}
     </div>
+     
   );
   };
 

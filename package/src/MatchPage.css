@@ -137,6 +137,20 @@
   margin-left:5px;
   justify-content: center;
 }
+.bottom-sheet {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #4169E1; /* Matching background color */
+  color: white;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 .odds-tile {
   width: 100%; /* Make tiles take full width of the grid cell */
@@ -227,22 +241,12 @@
     width: 100%;
     padding: -10px -10px -10px -10px;
   }
+  .bottom-sheet{
+    width: 93%;
+  }
 }
 
 /* Bottom Sheet Styles */
-.bottom-sheet {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #4169E1; /* Matching background color */
-  color: white;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-}
 
 .bottom-sheet.active {
   display: flex;

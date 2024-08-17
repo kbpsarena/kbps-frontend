@@ -247,7 +247,7 @@ const MatchPage = () => {
       <LiveScoreSection />
       <OddsTiles />
       <div ref={bottomSheetRef} className={`bottom-sheet ${isBottomSheetOpen ? 'active' : ''}`}>
-        <h3>Enter Bidding Amount</h3>
+        <h5>Enter Bidding Amount</h5>
         <div className="bidding-container">
           <button onClick={() => handleBiddingChange(-1)}>-</button>
           <input

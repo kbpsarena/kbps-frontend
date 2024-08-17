@@ -66,6 +66,8 @@ import MatchPage from '../MatchPage';
 import Breadcrumbs from '../views/ui/Breadcrumbs';
 import ProtectedRoute from '../ProtectedRoute'; // Assuming you have a ProtectedRoute component
 import EventDetail from '../Event';
+import ChangePassword from '../layouts/ChangePassword';
+import BettingApp from '../BettingApp';
 //explain me the below code
 
 const ThemeRoutes = (user, setUser) => [
@@ -79,6 +81,8 @@ const ThemeRoutes = (user, setUser) => [
       {path:'/login', element: user ? <Navigate to="/homepage" /> : <Navigate to="/login" /> },
       { path: '/homepage', element: user ? <MatchList /> : <Navigate to="/login" /> },
       {path: '/matchpage/:matchId', element: user ? <MatchPage /> : <Navigate to="/login" />},
+      {path: '/myAccount', element: user ? <ChangePassword/> : <Navigate to="/login" />},
+      {path: '/profitAndLoss', element: user ? <BettingApp/> : <Navigate to="/login" />},
       // {
       //   path: '/starter',
       //   element: user ?  <Starter />  : <Navigate to="/login" />,

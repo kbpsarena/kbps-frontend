@@ -12,6 +12,7 @@ import Loading from './Loading';
 
 const MatchList = () => {
   const [isVisible, setIsVisible] = useState(true);
+ 
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -24,6 +25,7 @@ const MatchList = () => {
   const [matches, setMatches] = useState([]);
   const [userData, setUserData] = useState({});
   const userId = getUserId(); 
+
 
   useEffect(() => {
     const fetchMatches = async () => {
@@ -82,17 +84,36 @@ const MatchList = () => {
   }, []);
 
   return (
-    <div>
+    <div className='MatchPage'>
       <header >
         {userData.user_name ? (
+         
           <header className="App-header">
-            <h1>Welcome, {userData.user_name}</h1>
-            <p>Your balance: ${userData.user_money?.toFixed(2)}</p>
+            <h1></h1>
+            <p></p>
           </header>
+        
         ) : (
           <Loading/>
         )}
       </header>
+      <div className="match-listing">
+            <div  className="depo">
+              <Link to={'/homepage'}>
+                <div className="match-details">
+                  <span className="team-name">jkln</span>
+                </div>
+              </Link>
+            </div>
+            <div  className="withdraw">
+              <Link to={'/homepage'}>
+                <div className="match-details">
+                  <span className="team-name">kjn</span>
+                </div>
+              </Link>
+            </div>
+        </div>
+ 
       <main>
         <ul className="match-list">
           {matches.map(match => (

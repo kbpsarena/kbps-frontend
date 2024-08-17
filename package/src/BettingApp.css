@@ -1,0 +1,124 @@
+.betting-form {
+    background-color: #d3e8f4;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 350px;
+    margin: auto;
+  }
+  
+  .header {
+    background-color: #2e3340;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+  
+  .rates {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .rate-option {
+    background-color: #4f72c1;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 20px;
+  }
+  
+  .rate-option.secondary {
+    background-color: #6b85db;
+  }
+  
+  .rate-option.tertiary {
+    background-color: #e58d8d;
+  }
+  
+  .rate-stake-section {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .rate, .stake {
+    width: 45%;
+  }
+  
+  .label {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .input-group button {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .input-group input {
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0 10px;
+    font-size: 16px;
+  }
+  
+  .rate-options button, .stake-options button {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: #4f72c1;
+    width: 100%;
+  }
+  
+  .cancel-button, .place-bet-button {
+    padding: 10px;
+    width: 100%;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .cancel-button {
+    background-color: white;
+    color: #4f72c1;
+    border: 1px solid #ccc;
+  }
+  
+  .place-bet-button {
+    background-color: #4f72c1;
+    color: white;
+  }
+  
+  .min-max {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  

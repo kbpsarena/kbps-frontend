@@ -1,29 +1,29 @@
 import React from 'react';
-import 'materialize-css/dist/css/materialize.min.css';
-import { Icon } from '@material-ui/core';
-import { Face, Person, CreditCard, AttachMoney, ShowChart, AccountBalanceWallet } from '@material-ui/icons';
+
+import user1 from '../../src/assets/images/users/user1.jpg';
 
 const UserDetails = () => {
     return (
       <ul className="collection with-header col m6 s12" style={{ margin: 0 }}>
         <li className="collection-header"><h4>User Details</h4></li>
         <li className="collection-item" style={{ paddingLeft: 10 }}>
-          <div>Name : KUSH<a href="#" className="col secondary-content green-text"><Face /></a></div>
+          
+          <div >Name : KUSH<a href="#" className="col secondary-content"></a></div>
         </li>
         <li className="collection-item" style={{ paddingLeft: 10 }}>
-          <div>Username : 50KUSH27<a href="#" className="col secondary-content green-text"><Person /></a></div>
+          <div>Username : 50KUSH27<a href="#" className="col secondary-content"></a></div>
         </li>
         <li className="collection-item" style={{ paddingLeft: 10 }}>
-          <div>Chips : 0<a href="#" className="col secondary-content green-text"><CreditCard /></a></div>
+          <div>Chips : 0<a className="col secondary-content"></a></div>
         </li>
         <li className="collection-item" style={{ paddingLeft: 10 }}>
-          <div>P/L : 0.95<a href="#" className="col secondary-content green-text"><AttachMoney /></a></div>
+          <div>P/L : 0.95<a  className="col secondary-content"></a></div>
         </li>
         <li className="collection-item" style={{ paddingLeft: 10 }}>
-          <div>Exposure : 0.00<a href="#" className="col secondary-content green-text"><ShowChart /></a></div>
+          <div>Exposure : 0.00<a  className="col secondary-content "></a></div>
         </li>
         <li className="collection-item" style={{ paddingLeft: 10 }}>
-          <div>Balance : 0.95<a href="#" className="col secondary-content green-text"><AccountBalanceWallet /></a></div>
+          <div>Balance : 0.95<a className="col secondary-content"></a></div>
         </li>
       </ul>
     );

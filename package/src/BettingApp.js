@@ -1,82 +1,65 @@
-import React, { useEffect, useState } from 'react';
-import M from 'materialize-css';
-import 'materialize-css/dist/css/materialize.min.css';
+import React, { useState } from "react";
+import "./BettingApp.css";
 
 const BettingApp = () => {
-  useEffect(() => {
-    // Initialize Materialize CSS JavaScript features
-    M.AutoInit();
-  }, []);
+  const [rate, setRate] = useState(1000);
+  const [stake, setStake] = useState(0);
+
+  const handleRateChange = (increment) => {
+    setRate((prevRate) => prevRate + increment);
+  };
+
+  const handleStakeChange = (increment) => {
+    setStake((prevStake) => prevStake + increment);
+  };
 
   return (
-    <div>
-      <nav className="blue darken-2">
-        <div className="nav-wrapper">
-          <a href="#" className="brand-logo">Betting App</a>
-        </div>
-      </nav>
+    <div className="betting-form">
+      <div className="header">
+        <span className="header-title">The Draw</span>
+        <span className="header-value">0</span>
+      </div>
 
-      <div className="container">
-        <div className="row">
-          <div id="market" className="col s12 l8">
-            <h5>Market</h5>
-            {/* Add market content here */}
-          </div>
+      <div className="rates">
+        <span className="rate-option">1000</span>
+        <span className="rate-option secondary">106</span>
+        <span className="rate-option tertiary">0</span>
+      </div>
 
-          <div id="bets" className="col s12 l4">
-            <BetTabs />
+      <div className="rate-stake-section">
+        <div className="rate">
+          <label className="label">RATE</label>
+          <div className="input-group">
+            <button onClick={() => handleRateChange(-100)}>-</button>
+            <input type="text" value={rate} readOnly />
+            <button onClick={() => handleRateChange(100)}>+</button>
           </div>
+          
         </div>
+
+        <div className="stake">
+          <label className="label">STAKE</label>
+          <div className="input-group">
+            <button onClick={() => handleStakeChange(-100)}>-</button>
+            <input type="text" value={stake} readOnly />
+            <button onClick={() => handleStakeChange(100)}>+</button>
+          </div>
+          
+        </div>
+      </div>
+
+      <div className="buttons">
+        <button className="cancel-button">CANCEL</button>
+        <button className="place-bet-button">PLACE BET</button>
+      </div>
+
+      <div className="min-max">
+        <span>MIN : 100</span>
+        <span>West Indies</span>
+        <span>MAX : 10000</span>
+        <span>0</span>
       </div>
     </div>
-  );
-};
-
-const BetTabs = () => {
-  useEffect(() => {
-    const elem = document.querySelector('.tabs');
-    M.Tabs.init(elem);
-  }, []);
-
-  return (
-    <div>
-      <ul className="tabs">
-        <li className="tab col s4"><a href="#matched" className="active">Matched</a></li>
-        <li className="tab col s4"><a href="#unmatched">Un-Matched</a></li>
-        <li className="tab col s4"><a href="#fancy">Fancy</a></li>
-      </ul>
-
-      <div id="matched" className="col s12">
-        <BetTable type="Matched" />
-      </div>
-      <div id="unmatched" className="col s12">
-        <BetTable type="Unmatched" />
-      </div>
-      <div id="fancy" className="col s12">
-        <BetTable type="Fancy" />
-      </div>
-    </div>
-  );
-};
-
-const BetTable = ({ type }) => {
-  const headers = type === 'Unmatched' 
-    ? ['Cancel', 'Runner', 'Rate', 'Stake', 'Profit/Loss', 'Date/Time']
-    : ['Runner', 'Rate', 'Stake', 'Profit/Loss', 'Date/Time'];
-
-  return (
-    <table className="striped">
-      <thead>
-        <tr>
-          {headers.map((header, index) => (
-            <th key={index}>{header}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {/* Add table rows here */}
-      </tbody>
-    </table>
   );
 };
 

@@ -40,9 +40,28 @@
 
   .LanguageTab{
     flex:20% ;
-    padding: 0px 0px 0px 50px;
+    padding: 0px 0px 0px 90px;
   }
 
   .LanguageSelector{
     flex:20%;
+}
+
+@media (max-width: 360px) {
+  .global {
+    flex: 60%;
+    padding: 0px 70px 0px 0px;
+    
+  }
+  .d-lg-none{
+      width:30%;
+  }
+  .LanguageTab{
+    flex:20% ;
+    padding: 0px 0px 0px 0px;
+  }
+
+  .LanguageSelector{
+    flex:20%;
+}
 }

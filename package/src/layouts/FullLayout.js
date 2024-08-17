@@ -18,7 +18,7 @@ const FullLayout = () => {
           {/********header**********/}
           <Header />
           {/********Middle Content**********/}
-          <div className="col">
+          <div className="col" >
             <Outlet/>
           </div>
         </div>

@@ -1,0 +1,4 @@
+{
+  "welcome": "स्वागत है, {user_name}",
+  "balance": "आपका शेष: ₹ {user_money}"
+}
