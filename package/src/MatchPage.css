@@ -78,9 +78,9 @@
 
 /* Live Score Container */
 .live-score-container {
-  background-image: url(https://media.istockphoto.com/id/649619272/vector/cricket-stadium-with-neon-lights-arena.jpg?s=1024x1024&w=is&k=20&c=mzCvTXnWViXtAi9PL5UC6NrrKYYP_eJN3zKdhTUDTVU=);
+  background-image: url('./assets/images/bg/wicket_bg.png');
   color: #fff;
-  background-position: bottom;
+  background-position: 60%;
   background-size: cover;
   height:80px;
   display: flex;
@@ -110,8 +110,7 @@
 }
 
 .status-text {
-  font-family: Tahoma, sans-serif;
-  font-size: 12px;
+  font-size: 10px;
   animation: txt 3s ease-out infinite;
 }
 

@@ -139,6 +139,7 @@ const MatchPage = () => {
         match_id: matchId,
         money_on_stake: biddingAmount,
         state_name: selectedOdd,
+        odd_value : oddsData[selectedOdd],
         team_one_name: matchData.team_one_symbol,
         team_two_name: matchData.team_two_symbol,
         team_one_ball: matchData.overs_by_team_one,
@@ -179,7 +180,7 @@ const MatchPage = () => {
 
   const LiveScoreSection = () => {
     const lastBallResults = matchData.last_balls_results || [];
-    const formattedLastBallResults = lastBallResults.slice(0,6).join(' ');
+    const formattedLastBallResults = lastBallResults.slice(1,6).reverse().join(' ');
 
     return (
       <div className="live-score-container">
@@ -189,17 +190,16 @@ const MatchPage = () => {
           </div>
           <div style={{ fontSize: '12px', fontWeight: '600' }}>
             <span style={{ fontSize: '17px' }}>{matchData.team_one_score}</span>
-            <span>{matchData.overs_by_team_one}</span>
+            <span> {matchData.overs_by_team_one}</span>
             <br />
-            <span>CRR: calculateMeMaster</span>
+            {/* <span>CRR: calculateMeMaster</span> */}
           </div>
         </div>
         <div className="match-status">
-          <span className="status-text">run_this_over</span>
-          <div>
-            <ul className="no-list-style">
-              <li>{formattedLastBallResults}</li>
-            </ul>
+          <span>run previous six balls</span>
+          <div className="no-list-style">
+              {formattedLastBallResults}
+              <span className="status-text"> {lastBallResults.slice(0,1) || 'x'}</span>
           </div>
         </div>
         <div className="team">
@@ -208,9 +208,9 @@ const MatchPage = () => {
           </div>
           <div style={{ fontSize: '12px', fontWeight: '600' }}>
             <span style={{ fontSize: '17px' }}>{matchData.team_two_score}</span>
-            <span>{matchData.overs_by_team_two}</span>
+            <span> {matchData.overs_by_team_two}</span>
             <br />
-            <span>CRR: calculateMeMaster</span>
+            {/* <span>CRR: calculateMeMaster</span> */}
           </div>
         </div>
       </div>

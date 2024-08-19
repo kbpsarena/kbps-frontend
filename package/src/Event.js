@@ -95,7 +95,7 @@ const EventDetail = () => {
                   <td>
                     {tdata.state_of_winning === "lost" ? (
                       <span className="p-2 bg-danger rounded-circle d-inline-block ms-3"></span>
-                    ) : tdata.status === "in_progress" ? (
+                    ) : tdata.state_of_winning === "in_progress" ? (
                       <span className="p-2 bg-warning rounded-circle d-inline-block ms-3"></span>
                     ) : (
                       <span className="p-2 bg-success rounded-circle d-inline-block ms-3"></span>
