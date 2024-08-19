@@ -48,7 +48,7 @@ const MatchPage = () => {
   // }, [matchId]);
 
   useEffect(() => {
-    const socket = new WebSocket(`ws://${socketUrl}/ws/odds`);
+    const socket = new WebSocket(`${socketUrl}/ws/odds`);
 
     socket.onopen = () => {
       console.log('WebSocket connection established');
