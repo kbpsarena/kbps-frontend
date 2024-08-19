@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './Login.css';
 import whatsappLogo from './whatsapp_logo.png';
-
+import { baseUrl } from './Utils'; // Adjust the path as needed
 function Login({ setUser }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -29,7 +29,7 @@ function Login({ setUser }) {
                     source1.cancel('Request timed out');
                 }, 5000); // 5 seconds in milliseconds
                 const response1 = await axios.post(
-                    `http://localhost:8080/user/is-logged-in`, 
+                    `${baseUrl}/user/is-logged-in`, 
                     { user_id: localStorage.getItem('user_id') }, 
                     {
                         headers: {
@@ -75,7 +75,7 @@ function Login({ setUser }) {
             const timeout = setTimeout(() => {
                 source.cancel('Request timed out');
             }, 5000); // 5 seconds in milliseconds
-            const response = await axios.post(`http://localhost:8080/is-verified-user`, { user_name: username, password: password }, {
+            const response = await axios.post(`${baseUrl}/is-verified-user`, { user_name: username, password: password }, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -109,7 +109,7 @@ function Login({ setUser }) {
             const timeout = setTimeout(() => {
                 source.cancel('Request timed out');
             }, 5000); // 5 seconds in milliseconds
-            const response = await axios.post(`http://localhost:8080/is-verified-user`, { user_name: 'demom0KL', password: 'Hwfw57YJuPBG' }, {
+            const response = await axios.post(`${baseUrl}/is-verified-user`, { user_name: 'demom0KL', password: 'Hwfw57YJuPBG' }, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

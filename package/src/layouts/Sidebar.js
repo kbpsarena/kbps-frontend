@@ -5,6 +5,8 @@ import Cookies from "js-cookie";
 import { useNavigate } from 'react-router-dom';
 import { getUserId } from '../Utils'; 
 import axios from 'axios';
+import { baseUrl } from '../Utils';
+
 
 const navigation = [
   {
@@ -81,7 +83,7 @@ const Sidebar = () => {
     //     setTimeout(() => {
     //       source.cancel('Request timed out');
     //     }, 50000);
-    //     const response = axios.post('http://localhost:8080/user/logout', { userId: getUserId() }, {
+    //     const response = axios.post('${baseUrl}/user/logout', { userId: getUserId() }, {
     //       headers: {
     //         'Content-Type': 'application/json',
     //       },

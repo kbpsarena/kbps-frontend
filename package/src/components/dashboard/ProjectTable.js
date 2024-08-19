@@ -1,6 +1,7 @@
 import { Card, CardBody, CardTitle, CardSubtitle, Table } from "reactstrap";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { baseUrl } from '../../Utils';
 
 import user1 from "../../assets/images/users/user1.jpg";
 import user2 from "../../assets/images/users/user2.jpg";
@@ -21,7 +22,7 @@ const ProjectTables = () => {
     const fetchTableData = async () => {
       try {
         // Replace 'YOUR_API_URL' with the actual URL of your API
-        const response = await axios.post('http://localhost:8080/homepage/get', payload, {
+        const response = await axios.post('${baseUrl}/homepage/get', payload, {
           headers: {
             'Content-Type': 'application/json',
           },

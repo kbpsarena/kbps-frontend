@@ -1,1 +1,1 @@
-const base_url = 'http://localhost:8080';
+const base_url = '${baseUrl}';

@@ -4,6 +4,7 @@ import axios from 'axios';
 import './MatchPage.css';
 import { getUserMoney, getUserId } from './Utils.js';
 import Cookies from 'js-cookie';
+import { baseUrl , socketUrl} from './Utils.js';
 
 const MatchPage = () => {
   const { matchId } = useParams();
@@ -31,7 +32,7 @@ const MatchPage = () => {
   //         source.cancel('Request timed out');
   //       }, 50000);
 
-  //       const response = await axios.post('http://localhost:8080/match/get', { match_id: matchId }, {
+  //       const response = await axios.post('${baseUrl}/match/get', { match_id: matchId }, {
   //         headers: {
   //           'Content-Type': 'application/json',
   //         },
@@ -47,7 +48,7 @@ const MatchPage = () => {
   // }, [matchId]);
 
   useEffect(() => {
-    const socket = new WebSocket('ws://localhost:8080/ws/odds');
+    const socket = new WebSocket(`ws://${socketUrl}/ws/odds`);
 
     socket.onopen = () => {
       console.log('WebSocket connection established');
@@ -134,7 +135,7 @@ const MatchPage = () => {
     }
     setIsLoading(true);
     try {
-      const response = await axios.post('http://localhost:8080/update/odds', {
+      const response = await axios.post(`${baseUrl}/update/odds`, {
         user_id: getUserId(), // Replace with actual user_id
         match_id: matchId,
         money_on_stake: biddingAmount,

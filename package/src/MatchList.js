@@ -3,9 +3,9 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './MatchList.css'; // Ensure you create and import the CSS file
 import './const-file';
+import { baseUrl } from './Utils'; // Adjust the path as needed
 import { getUserId } from './Utils'; // Adjust the path as needed
 import Cookies from 'js-cookie';
-
 import Loading from './Loading';
 
 
@@ -34,7 +34,7 @@ const MatchList = () => {
             const timeout1 = setTimeout(() => {
                 source1.cancel('Request timed out');
             }, 50000); // 5 seconds in milliseconds
-            const response1 = await axios.post('http://localhost:8080/user/get', { user_id : userId}, 
+            const response1 = await axios.post(`${baseUrl}/user/get`, { user_id : userId}, 
                 {
                 headers: {
                   'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ const MatchList = () => {
             const timeout2 = setTimeout(() => {
                 source1.cancel('Request timed out');
             }, 50000); // 5 seconds in milliseconds
-            const response2 = await axios.post('http://localhost:8080/get/payout', { user_id : userId}, 
+            const response2 = await axios.post(`${baseUrl}/get/payout`, { user_id : userId}, 
                 {
                 headers: {
                   'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ const MatchList = () => {
             const timeout = setTimeout(() => {
                 source.cancel('Request timed out');
             }, 50000); // 5 seconds in milliseconds
-            const response = await axios.post('http://localhost:8080/homepage/get', { user_id : userId}, 
+            const response = await axios.post(`${baseUrl}/homepage/get`, { user_id : userId}, 
                 {
                 headers: {
                   'Content-Type': 'application/json',

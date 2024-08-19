@@ -9,6 +9,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { getUserId } from './Utils'; // Adjust the path as needed
 import Cookies from 'js-cookie';
+import { baseUrl } from './Utils'; // Adjust the path as needed
 
 const EventDetail = () => {
     console.log("I am inside MatchList");
@@ -24,7 +25,7 @@ const EventDetail = () => {
               const timeout = setTimeout(() => {
                   source.cancel('Request timed out');
               }, 50000); // 5 seconds in milliseconds
-              const response = await axios.post('http://localhost:8080/transactions/get', { user_id : userId}, 
+              const response = await axios.post(`${baseUrl}/transactions/get`, { user_id : userId}, 
                   {
                   headers: {
                     'Content-Type': 'application/json',

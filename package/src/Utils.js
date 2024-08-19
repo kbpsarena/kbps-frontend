@@ -10,3 +10,6 @@ export const getUserId = () => {
 export const getUserMoney = () => {
     return localStorage.getItem('user_money');
 };
+
+export const baseUrl = 'http://localhost:8080';
+export const socketUrl = 'localhost:8080';
