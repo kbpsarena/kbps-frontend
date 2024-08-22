@@ -120,9 +120,35 @@ const MatchList = () => {
             <li key={match.match_id} className="match-item">
               <Link to={`/matchpage/${match.match_id}`}>
                 <div className="match-details">
-                  <span className="team-name">{match.team_one}</span>
-                  <span className="vs">vs</span>
-                  <span className="team-name">{match.team_two}</span>
+                <span
+                className="team-flag"
+                style={{
+                  backgroundImage: `url(${match.team_one_flag})`,
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                  clipPath: 'polygon(20% 20%, 80% 20%, 80% 80%, 20% 80%)',
+                  width: '50px', 
+                  height: '50px',
+                  marginRight: '10px',
+                }}
+              ></span>
+              <span className="team-name">{match.team_one}</span>
+              <span className="vs">vs</span>
+              <span
+                className="team-flag"
+                style={{
+                  backgroundImage: `url(${match.team_two_flag})`,
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                  clipPath: 'polygon(20% 20%, 80% 20%, 80% 80%, 20% 80%)',
+                  width: '50px', 
+                  height: '50px',
+                  marginRight: '10px',
+                }}
+              ></span>
+              <span className="team-name">{match.team_two}</span>
                   <span>{match.is_live_match === false ? (
                       <span className="p-2 bg-danger rounded-circle d-inline-block ms-3"></span>
                     ) :  (

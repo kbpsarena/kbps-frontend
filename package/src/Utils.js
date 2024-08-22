@@ -11,5 +11,5 @@ export const getUserMoney = () => {
     return localStorage.getItem('user_money');
 };
 
-export const baseUrl = 'https://betting-production.up.railway.app';
-export const socketUrl = 'wss://betting-production.up.railway.app';
+export const baseUrl = 'http://localhost:8080';
+export const socketUrl = 'ws://localhost:8080';
