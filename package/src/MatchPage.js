@@ -5,6 +5,7 @@ import './MatchPage.css';
 import { getUserMoney, getUserId } from './Utils.js';
 import Cookies from 'js-cookie';
 import { baseUrl , socketUrl} from './Utils.js';
+import { Link } from 'react-router-dom';
 
 const MatchPage = () => {
   const { matchId } = useParams();
@@ -59,6 +60,18 @@ const MatchPage = () => {
       // console.log('Received message:', event.data);
       const data1 = JSON.parse(event.data);
       let data = data1.give_odds_response;
+      data = {
+        "run_zero_odds": Math.min(10, data.run_zero_odds),
+        "run_one_odds": Math.min(10, data.run_one_odds),
+        "run_two_odds": Math.min(10, data.run_two_odds),
+        "run_three_odds": Math.min(10, data.run_three_odds),
+        "run_four_odds": Math.min(10, data.run_four_odds),
+        "run_five_odds": Math.min(10, data.run_five_odds),
+        "run_six_odds": Math.min(10, data.run_six_odds),
+        "wicket_odds": Math.min(10, data.wicket_odds),
+        "match_id": data.match_id,
+        "ball_state": data.ball_state,
+      }
       setMatchData(data1.match_page_response);
       // console.log('bacche data1.match_page_reponse hai {}', data1.match_page_response);
       // Check which odds have changed and update blinkTiles state
@@ -72,7 +85,7 @@ const MatchPage = () => {
                 setBlinkTiles(prevBlinkTiles => ({ ...prevBlinkTiles, [key]: false }));
               }, 500);
             }
-          });
+          });       
           setBlinkTiles(changedOdds);
         }
         return data;
@@ -248,23 +261,47 @@ const MatchPage = () => {
       <LiveScoreSection />
       <OddsTiles />
       <div ref={bottomSheetRef} className={`bottom-sheet ${isBottomSheetOpen ? 'active' : ''}`}>
-        <h5>Enter Bidding Amount</h5>
-        <div className="bidding-container">
-          <button onClick={() => handleBiddingChange(-1)}>-</button>
-          <input
+        <div className="topContent" >
+          <div className="topContentLeft">
+            <label>odd for run oddState</label>
+          </div>
+          <div className="topContentRight">
+            <button onClick={() => handleBiddingChange(-80)}>2.4X</button>
+          </div>
+        </div>
+        <div className="rate-stake-section">
+        <div className="rate">
+          <label className="label">RATE</label>
+          <div className="input-group">
+          <button onClick={() => handleBiddingChange(-80)}>-</button>
+            <input
             type="number"
             value={biddingAmount}
             onChange={handleBiddingInputChange}
           />
-          <button onClick={() => handleBiddingChange(1)}>+</button>
-          <span className="expected-money">Your money will become {expectedMoney}</span>
+            <button onClick={() => handleBiddingChange(80)}>+</button>
+          </div>
+          
         </div>
-        <div className={`aukaat-message ${isMessageVisible ? 'warning' : ''}`}>
-          {message}
+
+        <div className="stake">
+          <label className="label">STAKE</label>
+          <div className="input-group">
+            <button onClick={() => handleBiddingChange(-80)}>-</button>
+            <input
+            type="number"
+            value={biddingAmount}
+            onChange={handleBiddingInputChange}
+          />
+            <button onClick={() => handleBiddingChange(80)}>+</button>
+          </div>
+          
         </div>
-        <div className="placing-odds-message">
-          {placingOddsMessage}
-        </div>
+        
+      
+      </div>
+     
+        
         {isLoading ? (
           <div className="loader"></div>
         ) : (
@@ -275,6 +312,7 @@ const MatchPage = () => {
             {orderMessage}
           </div>
         )}
+        
       </div>
     </div>
   );

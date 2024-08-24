@@ -140,11 +140,11 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
+  width: 110%;
   background-color: #4169E1; /* Matching background color */
   color: white;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0);
+  padding: 0px;
   display: none;
   flex-direction: column;
   align-items: center;
@@ -171,6 +171,31 @@
   background-color: #FFA500; /* Orange on hover */
 }
 
+.topContent{
+  display: flex;
+  height: 25%;
+  width:100%;
+  background-color: #444444;
+}
+
+.topContentLeft{
+  flex: 40%;
+  margin: 23px 10px 10px 10px;
+  padding: 0px; 
+  font-size: 20px;
+}
+.topContentRight{
+  flex: 40%;
+  margin: 0px -84px 0px 0px;
+  padding: 0px; 
+  max-height:100%;
+  width:45%;
+}
+.topContentRight button{
+  width:60%;
+  height: 100%;
+  font-size: 29px;
+}
 /* Responsive Styles */
 @media (max-width: 1200px) {
   .odds-container {
@@ -249,6 +274,9 @@
 
 .bottom-sheet.active {
   display: flex;
+  height:300px;
+  width: 100%;
+  padding: 10px 10px 10px 10px;
 }
 
 .bidding-container {
@@ -336,3 +364,244 @@
     background-color: white;
   }
 }
+.betting-form {
+    background-color: #d3e8f4;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 350px;
+    margin: auto;
+  }
+  
+  .header {
+    background-color: #2e3340;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+  
+  .rates {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .rate-option {
+    background-color: #4f72c1;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 20px;
+  }
+  
+  .rate-option.secondary {
+    background-color: #6b85db;
+  }
+  
+  .rate-option.tertiary {
+    background-color: #e58d8d;
+  }
+  
+  .rate-stake-section {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .rate, .stake {
+    width: 55%;
+  }
+  
+  .label {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .input-group button {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .input-group input {
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0 0px;
+    font-size: 16px;
+  }
+  
+  .rate-options button, .stake-options button {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: #4f72c1;
+    width: 100%;
+  }
+  
+  .cancel-button, .place-bet-button {
+    padding: 10px;
+    width: 100%;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .cancel-button {
+    background-color: white;
+    color: #4f72c1;
+    border: 1px solid #ccc;
+  }
+  
+  .place-bet-button {
+    background-color: #4f72c1;
+    color: white;
+  }
+  
+  .min-max {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  
+
+  .container {
+    position: relative;
+    width: 360px;
+    height: 740px;
+  }
+  
+  /* Rectangle 1 */
+  .rectangle-1 {
+    position: absolute;
+    width: 360px;
+    height: 740px;
+    background: #D9D9D9;
+  }
+  
+  /* Rectangle 2 */
+  .rectangle-2 {
+    position: absolute;
+    width: 360px;
+    height: 299px;
+    background: #130A7D;
+  }
+  
+  /* Section 1 */
+  .section-1 {
+    box-sizing: border-box;
+    position: relative;
+    width: 360px;
+    height: 59px;
+    background: #444444;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
+  
+  /* Section 2 */
+  .section-2 {
+    box-sizing: border-box;
+    position: relative;
+    width: 258px;
+    height: 59px;
+    background: #444444;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
+  
+  /* Section 3 */
+  .section-3 {
+    box-sizing: border-box;
+    position: relative;
+    width: 99px;
+    height: 59px;
+    background: #444444;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
+  
+  /* Section 4 */
+  .section-4 {
+    box-sizing: border-box;
+    position: relative;
+    width: 360px;
+    height: 91px;
+    background: #0EAFE2;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
+  
+  /* Section 5 */
+  .section-5 {
+    box-sizing: border-box;
+    position: relative;
+    width: 360px;
+    height: 60px;
+    background: #444444;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
+  
+  /* Section 6 */
+  .section-6 {
+    box-sizing: border-box;
+    position: relative;
+    width: 323px;
+    height: 52px;
+    background: #444444;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
+  
+  /* Section 7 */
+  .section-7 {
+    box-sizing: border-box;
+    position: relative;
+    width: 149px;
+    height: 30px;
+    left: 18px;
+    top: 17px;
+    background: #EEDADA;
+    border: 1px solid rgba(200, 164, 164, 0.29);
+    border-radius: 2px;
+  }
+  
+  /* Section 8 */
+  .section-8 {
+    box-sizing: border-box;
+    position: relative;
+    width: 141px;
+    height: 29px;
+    left: 180px;
+    top: 18px;
+    background: #E62929;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
+  
