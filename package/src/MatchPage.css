@@ -127,6 +127,25 @@
   100% { opacity: 1; }
 }
 
+.maxBetDeclaration{
+  display:flex;
+  margin:20px 0px 0px 0px;
+  padding: 9px 12px;
+  max-width: 100%;
+  height: 40px;
+  font-size: 15px;
+  font-weight: 900;
+  background-color: #0077ff94;
+}
+
+.outcome{
+  flex:60%;
+}
+
+.maxBet{
+  flex: 25%;
+}
+
 /* Odds Tile Styles */
 .odds-container {
   display: grid;
@@ -186,7 +205,7 @@
 }
 .topContentRight{
   flex: 40%;
-  margin: 0px -84px 0px 0px;
+  margin: -5px -83px 0px 0px;
   padding: 0px; 
   max-height:100%;
   width:45%;
@@ -195,83 +214,11 @@
   width:60%;
   height: 100%;
   font-size: 29px;
-}
-/* Responsive Styles */
-@media (max-width: 1200px) {
-  .odds-container {
-    grid-template-columns: repeat(2, 1fr); /* Maintain 4 columns */
-  }
-}
-
-@media (max-width: 900px) {
-  .odds-container {
-    grid-template-columns: repeat(2, 1fr); /* 3 columns */
-  }
-}
-
-@media (max-width: 600px) {
-  .odds-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
-  }
-
-  .live-score-container {
-   
-    height: auto;
-    display: flex;
-  }
-
-  .match-status {
-    max-width: 40%;
-    text-align: left;
-    font-size: 10px;
-    
-  }
-  .status-text {
-    font-family: Tahoma, sans-serif;
-    font-size: 8px;
-    animation: txt 3s ease-out infinite;
-  }
-
-  .team{
-    max-width: 25%;
-    font-size: 14px;
-  }
-
-  .match-status {
-    margin-top: 10px;
-    text-align: center;
-  }
-}
-
-@media (max-width: 400px) {
-  .odds-container {
-    grid-template-columns: repeat(2,1fr); /* 1 column */
-    
-  }
-  
-  .odds-tile {
-    font-size: 12px; /* Smaller text for small screens */
-    height: 40px; /* Adjust height */
-    width:95%;
-    display: flex;
-    padding :5px 5px;
-  }
-  .live-score-container{
-    width: 100%;
-    padding: 0px ;
-  }
-
-  .Allstats{
-    width: 100%;
-    padding: -10px -10px -10px -10px;
-  }
-  .bottom-sheet{
-    width: 93%;
-  }
+  border-radius: 0px;
+  border-color: transparent;
 }
 
 /* Bottom Sheet Styles */
-
 .bottom-sheet.active {
   display: flex;
   height:300px;
@@ -327,12 +274,18 @@
 }
 
 /* Loader Styles */
-.loader {
+.placeOrder {
+  margin: 13px 0px;
+  border-radius: 0%;
+  width: 60%;
+  height: 15%;
+}
+.placeOrder button{
   border: 4px solid rgba(0, 0, 0, 0.1); /* Light grey */
   border-left: 4px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  border-radius: 0%;
+  width: 60%;
+  height: 40%;
   animation: spin 1s linear infinite;
   margin: 20px 0;
 }
@@ -410,21 +363,25 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    max-height: 80%;
   }
   
   .rate, .stake {
     width: 55%;
+    margin: -10px 0px 0px 25px;
   }
   
   .label {
     font-weight: bold;
     font-size: 16px;
+    margin: 0px 0px 0px 30px;
+    max-height: 30%;
   }
   
   .input-group {
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 1px;
   }
   
   .input-group button {
@@ -432,8 +389,8 @@
     height: 30px;
     font-size: 18px;
     font-weight: bold;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
+    background-color: #6d6868;
+    border: 1px solid #b6b3b3;
     border-radius: 4px;
     cursor: pointer;
   }
@@ -466,7 +423,7 @@
     width: 100%;
     border-radius: 4px;
     font-weight: bold;
-    margin-top: 10px;
+    margin-top:10px;
     cursor: pointer;
   }
   
@@ -605,3 +562,79 @@
     border-radius: 2px;
   }
   
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .odds-container {
+    grid-template-columns: repeat(2, 1fr); /* Maintain 4 columns */
+  }
+}
+
+@media (max-width: 900px) {
+  .odds-container {
+    grid-template-columns: repeat(2, 1fr); /* 3 columns */
+  }
+}
+
+@media (max-width: 600px) {
+  .odds-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  }
+
+  .live-score-container {
+   
+    height: auto;
+    display: flex;
+  }
+
+  .match-status {
+    max-width: 40%;
+    text-align: left;
+    font-size: 10px;
+    
+  }
+  .status-text {
+    font-family: Tahoma, sans-serif;
+    font-size: 8px;
+    animation: txt 3s ease-out infinite;
+  }
+
+  .team{
+    max-width: 25%;
+    font-size: 14px;
+  }
+
+  .match-status {
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .odds-container {
+    grid-template-columns: repeat(2,1fr); /* 1 column */
+    
+  }
+  
+  .odds-tile {
+    font-size: 12px; /* Smaller text for small screens */
+    height: 40px; /* Adjust height */
+    width:95%;
+    display: flex;
+    padding :5px 5px;
+  }
+  .live-score-container{
+    width: 100%;
+    padding: 0px ;
+  }
+
+  .Allstats{
+    width: 100%;
+    padding: -10px -10px -10px -10px;
+  }
+  .bottom-sheet{
+    width: 93%;
+  }
+}
+
+

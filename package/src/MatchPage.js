@@ -259,6 +259,14 @@ const MatchPage = () => {
   return (
     <div id="market" className="col l8 s12 active">
       <LiveScoreSection />
+      <div className="maxBetDeclaration">
+        <div className="outcome">
+          {matchData.overs_by_team_one} over, Run Outcome 
+        </div>
+        <div className="maxBet">
+          MAXBET:10000
+        </div>
+      </div>
       <OddsTiles />
       <div ref={bottomSheetRef} className={`bottom-sheet ${isBottomSheetOpen ? 'active' : ''}`}>
         <div className="topContent" >
@@ -305,14 +313,16 @@ const MatchPage = () => {
         {isLoading ? (
           <div className="loader"></div>
         ) : (
-          isPlaceOrderButtonVisible && <button onClick={placeOrder}>Place Order</button>
+          isPlaceOrderButtonVisible && <button className="placeOrder" onClick={placeOrder}>Place Order</button>
         )}
         {orderMessage && (
           <div className={`order-message ${orderStatus}`}>
             {orderMessage}
           </div>
         )}
-        
+      <div>
+        <h3>You will win x money</h3>
+        </div>  
       </div>
     </div>
   );
