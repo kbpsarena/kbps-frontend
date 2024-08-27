@@ -11,5 +11,13 @@ export const getUserMoney = () => {
     return localStorage.getItem('user_money');
 };
 
+export const getUserName = () => {
+    return localStorage.getItem('user_name');
+};
+
+export const getName = () => {
+    return localStorage.getItem('name');
+};
+
 export const baseUrl = 'http://localhost:8080';
 export const socketUrl = 'ws://localhost:8080';

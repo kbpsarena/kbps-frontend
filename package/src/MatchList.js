@@ -40,6 +40,8 @@ const MatchList = () => {
                   'Content-Type': 'application/json',
                 },
                 cancelToken: source1.token,});
+            localStorage.setItem("user_name", response1.data.user.username);
+            localStorage.setItem("name", response1.data.user.name);
 
             const source2 = axios.CancelToken.source();
             const timeout2 = setTimeout(() => {
@@ -51,7 +53,6 @@ const MatchList = () => {
                   'Content-Type': 'application/json',
                 },
                 cancelToken: source2.token,});
-    
 
         const source = axios.CancelToken.source();
             const timeout = setTimeout(() => {

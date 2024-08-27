@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Language from "../../src/assets/images/logos/Language.png";
+import { getUserMoney } from "../Utils";
 import {
   Navbar,
   Collapse,
@@ -60,7 +61,7 @@ const Header = () => {
                         <td>: 0.95</td>
                         </tr>
                         </table>"
-                    >2</span>PTI
+                    >{getUserMoney()}</span> PTI
                 </div>
                 </div>
             
