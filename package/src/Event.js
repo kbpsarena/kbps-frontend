@@ -84,7 +84,7 @@ const EventDetail = () => {
                 <th>Status</th>
                 <th>Odd State</th>
                 <th>Odd Value</th>
-                <th>Total Money</th>
+                <th>Total Money To Win</th>
                 <th>Money On Stake</th>
                 <th>Date</th>
               </tr>
@@ -102,9 +102,16 @@ const EventDetail = () => {
                       <span className="p-2 bg-success rounded-circle d-inline-block ms-3"></span>
                     )}
                   </td>
+                  <td>{tdata.state_of_winning === "LOST" ? (
+                      <span className="">Lost</span>
+                    ) : tdata.state_of_winning === "IN_PROGRESS" ? (
+                      <span className=" ">In Progress</span>
+                    ) : (
+                      <span className="">Win</span>
+                    )}</td>
                   <td>{tdata.odd_state}</td>
-                  <td>{tdata.odd}</td>
-                  <td>${tdata.odd*tdata.money_on_stake}</td>
+                  <td className="p-2  d-inline-block ms-3">{tdata.odd}</td>
+                  <td className="p-2 ms-6">${(tdata.odd*tdata.money_on_stake).toFixed(2)}</td>
                   <td>{tdata.money_on_stake}</td>
                   <td>{tdata.date}</td>
                 </tr>

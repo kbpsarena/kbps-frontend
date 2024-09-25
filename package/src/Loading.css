@@ -30,7 +30,7 @@
 
    /* FlyingLettersScreen.css */
 
-.flying-container {
+/* .flying-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,5 +66,28 @@
     
     
     
+  }
+   */
+
+   .flying-container {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .flying-letter {
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fly-in 0.5s forwards ease-in-out;
+  }
+  
+  @keyframes fly-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   

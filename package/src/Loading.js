@@ -15,7 +15,7 @@ import React from 'react';
 import './Loading.css'; // Import the CSS file
 
 const FlyingLettersScreen = () => {
-  const appName = "Your App Name";
+  const appName = "cricBet";
 
   return (
     <div className="flying-container">

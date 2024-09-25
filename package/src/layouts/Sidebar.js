@@ -29,13 +29,13 @@ const navigation = [
     href: "/changePassword",
     icon: "bi bi-patch-check",
   },
-  {
-    // title: "Buttons",
-    title: "Profit&Loss",
-    // href: "/buttons",
-    href: "/profitAndLoss",
-    icon: "bi bi-hdd-stack",
-  },
+  // {
+  //   // title: "Buttons",
+  //   title: "Profit&Loss",
+  //   // href: "/buttons",
+  //   href: "/profitAndLoss",
+  //   icon: "bi bi-hdd-stack",
+  // },
   {
     // title: "Cards",
     title: "Earnings",
@@ -98,7 +98,7 @@ const Sidebar = () => {
   return (
     <div className="con p-3">
   <div className="d-flex align-items-center">
-    <Logo />
+  
     <span className="ms-auto d-lg-none">
       <Button
         close

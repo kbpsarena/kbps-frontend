@@ -6,6 +6,7 @@ import { getUserMoney, getUserId } from './Utils.js';
 import Cookies from 'js-cookie';
 import { baseUrl , socketUrl} from './Utils.js';
 import { Link } from 'react-router-dom';
+import Loading from './Loading.js';
 
 const MatchPage = () => {
   const { matchId } = useParams();
@@ -189,7 +190,7 @@ const MatchPage = () => {
   };
 
   if (!matchData) {
-    return <div>Loading...</div>;
+    return <div><Loading/></div>;
   }
 
   const LiveScoreSection = () => {
@@ -278,7 +279,7 @@ const MatchPage = () => {
           </div>
         </div>
         <div className="rate-stake-section">
-        <div className="rate">
+        {/* <div className="rate">
           <label className="label">RATE</label>
           <div className="input-group">
           <button onClick={() => handleBiddingChange(-80)}>-</button>
@@ -290,7 +291,7 @@ const MatchPage = () => {
             <button onClick={() => handleBiddingChange(80)}>+</button>
           </div>
           
-        </div>
+        </div> */}
 
         <div className="stake">
           <label className="label">STAKE</label>
@@ -321,7 +322,7 @@ const MatchPage = () => {
           </div>
         )}
       <div>
-        <h3>You will win x money</h3>
+        <h3>You will win {expectedMoney} money</h3>
         </div>  
       </div>
     </div>

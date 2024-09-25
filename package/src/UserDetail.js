@@ -49,10 +49,10 @@ useEffect( () => {
       <div class="right">
       {payoutData && (
         <>
-        <div class="rightbox">
+        {/* <div class="rightbox">
           <span class="large">{payoutData.chips}</span>
           <span class="small">kurkure</span>
-        </div>
+        </div> */}
         <div class="rightbox">
           <span class="large">{payoutData.totalAmount}</span>
           <span class="small">balance</span>
