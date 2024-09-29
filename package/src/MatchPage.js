@@ -12,8 +12,10 @@ const MatchPage = () => {
   const { matchId } = useParams();
   const [matchData, setMatchData] = useState(null);
   const [oddsData, setOddsData] = useState(null);
+  const [oddsString, setOddsString] = useState(null);
   const [selectedOdd, setSelectedOdd] = useState(null);
   const [biddingAmount, setBiddingAmount] = useState(0);
+  const [biddingRate, setBiddingRate] = useState(0);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [isMessageVisible, setIsMessageVisible] = useState(false);
   const [orderStatus, setOrderStatus] = useState(null);
@@ -117,6 +119,8 @@ const MatchPage = () => {
 
   const handleTileClick = (odd) => {
     setSelectedOdd(odd);
+    setBiddingRate(oddsData[odd]);
+    console.log(oddsData[odd]);
     setBiddingAmount(0);
     setIsBottomSheetOpen(true);
     setIsPlaceOrderButtonVisible(true);
@@ -137,7 +141,23 @@ const MatchPage = () => {
     const value = Math.max(0, Number(e.target.value));
     setBiddingAmount(value);
     setIsMessageVisible(value > userMoney);
-    setMessage(value > userMoney ? `teri aukaat ${userMoney} rupay ki hai bsdk` : `tere pass ${userMoney} rupay hai`);
+    setMessage(value > oddsData[selectedOdd] ? `teri aukaat ${userMoney} rupay ki hai bsdk` : `tere pass ${userMoney} rupay hai`);
+  };
+
+  const handleBiddingRateChange = (amount) => {
+    const newBiddingRate = biddingRate + amount;
+    if (newBiddingRate >= 0) {
+      setBiddingRate(newBiddingRate);
+      setIsMessageVisible(newBiddingRate > oddsData[selectedOdd]);
+      setMessage(newBiddingRate > oddsData[selectedOdd] ? `teri aukaat ${userMoney} rupay ki hai bsdk` : `tere pass ${userMoney} rupay hai`);
+    }
+  };
+
+  const handleBiddingRateInputChange = (e) => {
+    const value = Math.max(0, Number(e.target.value));
+    setBiddingRate(value);
+    setIsMessageVisible(value > oddsData[selectedOdd]);
+    setMessage(value > oddsData[selectedOdd] ? `teri aukaat ${userMoney} rupay ki hai bsdk` : `tere pass ${userMoney} rupay hai`);
   };
 
   const placeOrder = async () => {
@@ -152,6 +172,7 @@ const MatchPage = () => {
       const response = await axios.post(`${baseUrl}/update/odds`, {
         user_id: getUserId(), // Replace with actual user_id
         match_id: matchId,
+        money_on_rate:biddingRate,
         money_on_stake: biddingAmount,
         state_name: selectedOdd,
         odd_value : oddsData[selectedOdd],
@@ -254,9 +275,11 @@ const MatchPage = () => {
       </div>
     );
   };
-
   const expectedMoney = biddingAmount * (oddsData ? oddsData[selectedOdd] : 0);
-
+  const oddsKeys = [
+    'run_zero_odds', 'run_one_odds', 'run_two_odds', 'run_three_odds',
+    'run_four_odds', 'run_five_odds', 'run_six_odds', 'wicket_odds'
+  ];
   return (
     <div id="market" className="col l8 s12 active">
       <LiveScoreSection />
@@ -272,27 +295,26 @@ const MatchPage = () => {
       <div ref={bottomSheetRef} className={`bottom-sheet ${isBottomSheetOpen ? 'active' : ''}`}>
         <div className="topContent" >
           <div className="topContentLeft">
-            <label>odd for run oddState</label>
+            <label>Odds for {selectedOdd}</label>
           </div>
           <div className="topContentRight">
-            <button onClick={() => handleBiddingChange(-80)}>2.4X</button>
+            <button onClick={() => handleBiddingChange(-80)}>{oddsData[selectedOdd]}</button>
           </div>
         </div>
         <div className="rate-stake-section">
-        {/* <div className="rate">
+        <div className="rate">
           <label className="label">RATE</label>
           <div className="input-group">
-          <button onClick={() => handleBiddingChange(-80)}>-</button>
+          <button onClick={() => handleBiddingRateChange(-0.10)}>-</button>
             <input
             type="number"
-            value={biddingAmount}
-            onChange={handleBiddingInputChange}
+            value={biddingRate}
+            onChange={handleBiddingRateInputChange}
           />
-            <button onClick={() => handleBiddingChange(80)}>+</button>
+            <button onClick={() => handleBiddingRateChange(0.10)}>+</button>
           </div>
           
-        </div> */}
-
+        </div>
         <div className="stake">
           <label className="label">STAKE</label>
           <div className="input-group">
@@ -306,23 +328,30 @@ const MatchPage = () => {
           </div>
           
         </div>
-        
-      
       </div>
-     
-        
+      {isMessageVisible && (
+        <div className="message-container">
+        <span className="bidding-message">{message}</span>
+        </div>
+        )}
         {isLoading ? (
-          <div className="loader"></div>
-        ) : (
-          isPlaceOrderButtonVisible && <button className="placeOrder" onClick={placeOrder}>Place Order</button>
-        )}
-        {orderMessage && (
-          <div className={`order-message ${orderStatus}`}>
+      <div className="loader"></div>
+      ) : (
+          !isMessageVisible && isPlaceOrderButtonVisible && (
+          <button className="placeOrder" onClick={placeOrder}>
+          Place Order
+          </button>
+        )
+      )}
+
+      {orderMessage && (
+        <div className={`order-message ${orderStatus}`}>
             {orderMessage}
-          </div>
-        )}
+        </div>
+      )}  
+        
       <div>
-        <h3>You will win {expectedMoney} money</h3>
+        {!orderMessage&&!isMessageVisible&&(<h3>You will win {expectedMoney} money</h3>)}
         </div>  
       </div>
     </div>
