@@ -38,7 +38,7 @@ const navigation = [
   // },
   {
     // title: "Cards",
-    title: "Earnings",
+    title: "History/Status",
     // href: "/cards",
     href: "/earnings",
     icon: "bi bi-card-text",

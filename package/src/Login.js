@@ -60,6 +60,10 @@ function Login({ setUser }) {
         event.preventDefault();
         setError('');
         
+        if (!isChecked) {
+            setError('You must accept the Terms and Conditions and confirm you are 18 years or older.');
+            return;
+        }    
 
         if (username.length < 5 || username.length > 15) {
             setError('Username must be between 5 and 15 characters.');
@@ -121,6 +125,7 @@ function Login({ setUser }) {
         setUsername(''); // Clear the username field
         setPassword(''); // Clear the password field
     };
+    const [isChecked, setIsChecked] = useState(false);
 
     return (
         <div className="login-container">
@@ -148,6 +153,14 @@ function Login({ setUser }) {
                         required
                     />
                 </div>
+                <label>
+                 <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={(e) => setIsChecked(e.target.checked)}
+                />I accept the Terms and Conditions and confirm I am 18 years or older
+                    </label>
+                
                 <div className="button-container">
                     <button type="submit" className="login-button">Login</button>
                     <button type="button" onClick={handleSignUp} className="sign-up-button">

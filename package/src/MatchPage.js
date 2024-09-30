@@ -298,7 +298,7 @@ const MatchPage = () => {
             <label>Odds for {selectedOdd}</label>
           </div>
           <div className="topContentRight">
-            <button onClick={() => handleBiddingChange(-80)}>{oddsData[selectedOdd]}</button>
+            <button onClick={() => handleBiddingChange()}>{oddsData[selectedOdd]}</button>
           </div>
         </div>
         <div className="rate-stake-section">
