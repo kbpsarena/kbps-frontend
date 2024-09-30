@@ -105,7 +105,7 @@ function Login({ setUser }) {
     };
 
     const handleSignUp = () => {
-        window.location.href = 'https://wa.me/YOUR_WHATSAPP_BUSINESS_NUMBER'; // Replace with your WhatsApp Business number
+        window.location.href = 'https://wa.me/7483995406'; // Replace with your WhatsApp Business number
     };
 
     const handleDemoLogin = async () => {
