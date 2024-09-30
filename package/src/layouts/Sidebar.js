@@ -98,7 +98,7 @@ const Sidebar = () => {
   return (
     <div className="con p-3">
   <div className="d-flex align-items-center">
-  
+  <Logo />
     <span className="ms-auto d-lg-none">
       <Button
         close

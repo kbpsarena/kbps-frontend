@@ -71,9 +71,9 @@ const EventDetail = () => {
     <div>
       <Card>
         <CardBody background-color="red">
-          <CardTitle tag="h5">Project Listing</CardTitle>
+          <CardTitle tag="h5">Bets Status</CardTitle>
           <CardSubtitle className="mb-2 text-muted" tag="h6">
-            Overview of the projects
+            Listing of All Bets 
           </CardSubtitle>
 
           <Table className="no-wrap mt-3 align-middle" responsive borderless>

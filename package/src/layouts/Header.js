@@ -89,7 +89,7 @@ const Header = () => {
           <LogoWhite />
         </NavbarBrand>
       </div>
-      <div className= "LanguageTab">
+      {/* <div className= "LanguageTab">
         Language : 
       </div>
       <div>
@@ -101,7 +101,7 @@ const Header = () => {
                         width="45"
                         height="45"
                       />
-      </div>
+      </div> */}
     </Navbar>
     </div>
     
