@@ -109,7 +109,7 @@ const Sidebar = () => {
     </span>
   </div>
   <div className=" mt-2">
-    <Nav vertical className="sidebarNav">
+    <Nav vertical className="sidebarNav-tab">
       {navigation.map((navi, index) => (
         <NavItem key={index} className="sidenav-bg">
           <Link
