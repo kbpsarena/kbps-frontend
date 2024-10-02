@@ -78,11 +78,11 @@
   color: rgb(116, 37, 37);
 }
 
-.sidebar .nav-link:hover {
-  background-color: #495057;
-  color: white;
-}
 
+.sidenav-bg .nav-link:hover{
+  background-color: rgb(25, 31, 74);
+  transition: 0s;
+}
 
 @keyframes fadeIn {
   0% { opacity: 0; transform: translateY(-10px); }
