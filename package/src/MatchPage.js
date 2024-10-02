@@ -133,7 +133,10 @@ const MatchPage = () => {
     if (newBiddingAmount >= 0) {
       setBiddingAmount(newBiddingAmount);
       setIsMessageVisible(newBiddingAmount > userMoney);
-      setMessage(newBiddingAmount > userMoney ? `teri aukaat ${userMoney} rupay ki hai bsdk` : `tere pass ${userMoney} rupay hai`);
+      setMessage(newBiddingAmount > userMoney ? `You can't have sufficient balance` : `tere pass ${userMoney} rupay hai`);
+      setIsMessageVisible(newBiddingAmount > 100);
+      setMessage(newBiddingAmount > 100 ? `MAX BET is 100` : `tere pass ${userMoney} rupay hai`);
+    
     }
   };
 
@@ -141,7 +144,9 @@ const MatchPage = () => {
     const value = Math.max(0, Number(e.target.value));
     setBiddingAmount(value);
     setIsMessageVisible(value > userMoney);
-    setMessage(value > oddsData[selectedOdd] ? `teri aukaat ${userMoney} rupay ki hai bsdk` : `tere pass ${userMoney} rupay hai`);
+    setMessage(value > userMoney ? `You can't have sufficient balance` : `tere pass ${userMoney} rupay hai`);
+    setIsMessageVisible(value > 100);
+    setMessage(value > 100 ? `MAX BET is 100` : `tere pass ${userMoney} rupay hai`);
   };
 
   const handleBiddingRateChange = (amount) => {
@@ -149,7 +154,7 @@ const MatchPage = () => {
     if (newBiddingRate >= 0) {
       setBiddingRate(newBiddingRate);
       setIsMessageVisible(newBiddingRate > oddsData[selectedOdd]);
-      setMessage(newBiddingRate > oddsData[selectedOdd] ? `teri aukaat ${userMoney} rupay ki hai bsdk` : `tere pass ${userMoney} rupay hai`);
+      setMessage(newBiddingRate > oddsData[selectedOdd] ? `Odds Changed Can't able to placed bet` : `tere pass ${userMoney} rupay hai`);
     }
   };
 
@@ -157,7 +162,7 @@ const MatchPage = () => {
     const value = Math.max(0, Number(e.target.value));
     setBiddingRate(value);
     setIsMessageVisible(value > oddsData[selectedOdd]);
-    setMessage(value > oddsData[selectedOdd] ? `teri aukaat ${userMoney} rupay ki hai bsdk` : `tere pass ${userMoney} rupay hai`);
+    setMessage(value > oddsData[selectedOdd] ? `Odds Changed Can't able to placed bet` : `tere pass ${userMoney} rupay hai`);
   };
 
   const placeOrder = async () => {
@@ -288,7 +293,7 @@ const MatchPage = () => {
           {matchData.overs_by_team_one} over, Run Outcome 
         </div>
         <div className="maxBet">
-          MAXBET:10000
+          MAXBET:100
         </div>
       </div>
       <OddsTiles />
@@ -318,13 +323,13 @@ const MatchPage = () => {
         <div className="stake">
           <label className="label">STAKE</label>
           <div className="input-group">
-            <button onClick={() => handleBiddingChange(-80)}>-</button>
+            <button onClick={() => handleBiddingChange(-10)}>-</button>
             <input
             type="number"
             value={biddingAmount}
             onChange={handleBiddingInputChange}
           />
-            <button onClick={() => handleBiddingChange(80)}>+</button>
+            <button onClick={() => handleBiddingChange(10)}>+</button>
           </div>
           
         </div>
@@ -351,7 +356,10 @@ const MatchPage = () => {
       )}  
         
       <div>
-        {!orderMessage&&!isMessageVisible&&(<h3>You will win {expectedMoney} money</h3>)}
+        {!orderMessage&&!isMessageVisible&&(<h3>
+  <span style={{ color: "red" }}>Money on stake {biddingAmount}</span><br />
+  <span style={{ color: "green" }}>You will win {expectedMoney} money</span>
+</h3>)}
         </div>  
       </div>
     </div>
