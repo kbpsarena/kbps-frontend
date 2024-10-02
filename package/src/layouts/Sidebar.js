@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { getUserId } from '../Utils'; 
 import axios from 'axios';
 import { baseUrl } from '../Utils';
-
+import './SideBar.css';
 
 const navigation = [
   {
@@ -103,12 +103,12 @@ const Sidebar = () => {
       <Button
         close
         size="sm"
-        className="ms-auto d-lg-none"
+        className="d-lg-none"
         onClick={() => showMobilemenu()}
       ></Button>
     </span>
   </div>
-  <div className="pt-4 mt-2">
+  <div className=" mt-2">
     <Nav vertical className="sidebarNav">
       {navigation.map((navi, index) => (
         <NavItem key={index} className="sidenav-bg">
@@ -117,7 +117,7 @@ const Sidebar = () => {
             className={
               location.pathname === navi.href
                 ? "text-primary nav-link py-3"
-                : "nav-link text-secondary py-3"
+                : "nav-link text-white py-3"
             }
             onClick={() => showMobilemenu()}  
           >

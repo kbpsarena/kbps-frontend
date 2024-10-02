@@ -50,9 +50,13 @@
   transform: translateX(0);
 }
 
+.sidebarArea{
+  background-color: #2f4864;
+}
+
 .fontSize{
   font-weight: bold;
-  forced-color-adjust: black;
+  forced-color-adjust: rgb(214, 49, 49);
 }
 
 @media (max-width: 768px) {
