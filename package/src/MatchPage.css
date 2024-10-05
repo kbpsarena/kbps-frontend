@@ -1,4 +1,25 @@
 /* MatchPage.css */
+
+/* MatchPage.css */
+
+body, html {
+  font-family: 'Helvetica', sans-serif;
+}
+
+.live-score-container {
+  font-family: 'Helvetica', sans-serif;
+}
+
+.odds-container, .odds-tile {
+  font-family: 'Helvetica', sans-serif;
+}
+
+/* Add more specific classes as needed */
+.bottom-sheet, .rate, .stake, .bidding-message, .order-message {
+  font-family: 'Helvetica', sans-serif;
+}
+
+
 .Matchsummary{
   background-color: black;
   width:100%;
@@ -8,6 +29,10 @@
   margin: -24px -2px 0px -24px;
 
 
+}
+
+.active {
+  font-family: 'Helvetica', 'Roboto', sans-serif;
 }
 
 .loader {
@@ -221,7 +246,7 @@
   flex: 40%;
   margin: 23px 10px 10px 10px;
   padding: 0px; 
-  font-size: 20px;
+  font-size: 16px;
 }
 .topContentRight{
   flex: 40%;
