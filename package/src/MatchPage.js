@@ -257,7 +257,33 @@ const MatchPage = () => {
       </div>
     );
   };
+  const over = matchData.overs_by_team_one;
+  function incrementOver(over) {
 
+    if (over === undefined || isNaN(over)) {
+      console.error("Invalid 'over' value:", over);
+      return null; // Handle the error case as needed
+    }
+    // Split the over into the whole number (overs) and decimal (balls)
+    let [overs, balls] = over.toString().split('.').map(Number);
+  
+    // If the ball count is less than 5, just increment the ball count
+    if (balls < 5) {
+      balls += 1;
+    } 
+    // If the ball count is 5, reset it to 0 and increment the overs
+    else {
+      overs += 1;
+      balls = 0;
+    }
+  
+    return parseFloat(`${overs}.${balls}`);
+  }
+  
+  // Example usage:
+  let nextOver = incrementOver(over);
+   // Output: 15.0
+  
   const OddsTiles = () => {
     if (!oddsData) return null;
 
@@ -290,7 +316,7 @@ const MatchPage = () => {
       <LiveScoreSection />
       <div className="maxBetDeclaration">
         <div className="outcome">
-          {matchData.overs_by_team_one} over, Run Outcome 
+          {nextOver} over, Run Outcome 
         </div>
         <div className="maxBet">
           MAXBET:100

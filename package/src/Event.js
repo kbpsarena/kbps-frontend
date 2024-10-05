@@ -65,7 +65,32 @@ const EventDetail = () => {
       fetchMatches();
     }, []);
 
+    const over = matchDetails.overs_by_team_one;
+    function incrementOver(over) {
 
+      if (over === undefined || isNaN(over)) {
+        console.error("Invalid 'over' value:", over);
+        return 'null'; // Handle the error case as needed
+      }
+    // Split the over into the whole number (overs) and decimal (balls)
+    let [overs, balls] = over.toString().split('.').map(Number);
+  
+    // If the ball count is less than 5, just increment the ball count
+    if (balls < 5) {
+      balls += 1;
+    } 
+    // If the ball count is 5, reset it to 0 and increment the overs
+    else {
+      overs += 1;
+      balls = 0;
+    }
+  
+    return parseFloat(`${overs}.${balls}`);
+  }
+  
+  // Example usage:
+  matchDetails.overs_by_team_one = incrementOver(over);
+   // Output: 15.0
 
   return (
     <div>
@@ -92,7 +117,7 @@ const EventDetail = () => {
             <tbody>
               {historicalData.map((tdata, index) => (
                 <tr key={index} className="border-top">
-                  <td>{tdata.match_details}</td>
+                  <td>{}${incrementOver(tdata.overs_by_team_one)}${tdata.overs_by_team_two}</td>
                   <td>
                     {tdata.state_of_winning === "LOST" ? (
                       <span className="p-2 bg-danger rounded-circle d-inline-block ms-3"></span>
