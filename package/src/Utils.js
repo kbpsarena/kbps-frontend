@@ -21,3 +21,5 @@ export const getName = () => {
 
 export const baseUrl = 'https://betting-mzo7.onrender.com';
 export const socketUrl = 'wss://betting-mzo7.onrender.com';
+// export const baseUrl = 'http://localhost:8080';
+// export const socketUrl = 'ws://localhost:8080';
