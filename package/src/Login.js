@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './Login.css';
 import whatsappLogo from './whatsapp_logo.png';
+
 import { baseUrl } from './Utils'; // Adjust the path as needed
 function Login({ setUser }) {
+    const [loading, setLoading] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -73,7 +75,7 @@ function Login({ setUser }) {
             setError('Password must be between 8 and 20 characters.');
             return;
         }
-        
+        setLoading(true); // Start loading
         try {
             const source = axios.CancelToken.source();
             const timeout = setTimeout(() => {
@@ -102,6 +104,9 @@ function Login({ setUser }) {
             setUsername(''); // Clear the username field
             setPassword(''); // Clear the password field
         }
+        finally {
+            setLoading(false); // End loading
+        }
     };
 
     const handleSignUp = () => {
@@ -129,55 +134,62 @@ function Login({ setUser }) {
 
     return (
         <div className="login-container">
-            <form className="login-form" onSubmit={handleSubmit}>
-                <h2>Login</h2>
-                <div className="form-group">
-                    <label htmlFor="username">Username</label>
-                    <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
+            {loading ? (
+                <div className="loader-container">
+                    <div className="spinner"></div>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <label>
-                 <input
-                type="checkbox"
-                checked={isChecked}
-                onChange={(e) => setIsChecked(e.target.checked)}
-                />I accept the Terms and Conditions and confirm I am 18 years or older
+            ) : (
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <h2>Login</h2>
+                    <div className="form-group">
+                        <label htmlFor="username">Username</label>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={(e) => setIsChecked(e.target.checked)}
+                        />
+                        I accept the Terms and Conditions and confirm I am 18 years or older
                     </label>
-                
-                <div className="button-container">
-                    <button type="submit" className="login-button">Login</button>
-                    <button type="button" onClick={handleSignUp} className="sign-up-button">
-                        <img src={whatsappLogo} alt="WhatsApp" className="whatsapp-logo" />
-                        Sign Up
+    
+                    <div className="button-container">
+                        <button type="submit" className="login-button">Login</button>
+                        <button type="button" onClick={handleSignUp} className="sign-up-button">
+                            <img src={whatsappLogo} alt="WhatsApp" className="whatsapp-logo" />
+                            Sign Up
+                        </button>
+                    </div>
+                    <button type="button" onClick={handleDemoLogin} className="demo-login-button">
+                        Demo Login
                     </button>
-                </div>
-                <button type="button" onClick={handleDemoLogin} className="demo-login-button">
-                    Demo Login
-                </button>
-                {error && <p className="error-message">{error}</p>}
-            </form>
+                    {error && <p className="error-message">{error}</p>}
+                </form>
+            )}
             <div className="joined-count">
                 {joinedCount} people joined the platform 😍
             </div>
         </div>
-    );
+    );    
 }
 
 export default Login;
